@@ -1,4 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9ca3aa"/><stop offset=".35" stop-color="#444b53"/><stop offset="1" stop-color="#161b21"/></linearGradient><linearGradient id="e" x1="0" x2="1"><stop stop-color="#e6e8eb"/><stop offset=".45" stop-color="#7a8188"/><stop offset="1" stop-color="#252a31"/></linearGradient></defs>
-<rect width="800" height="600" fill="#1b2026"/><path d="M180 120l330-50 170 150-330 70z" fill="url(#e)"/><path d="M180 120l170 170v210L180 360z" fill="#313840"/><path d="M350 290l330-70v210l-330 70z" fill="url(#b)"/><g stroke="#fff" opacity=".08"><path d="M200 150l470 90"/><path d="M190 190l470 90"/><path d="M210 245l450 85"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#353b42"/><stop offset=".52" stop-color="#1c2228"/><stop offset="1" stop-color="#090d11"/></linearGradient>
+  <linearGradient id="top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7dce0"/><stop offset=".18" stop-color="#818991"/><stop offset=".45" stop-color="#c8cdd1"/><stop offset=".74" stop-color="#626a73"/><stop offset="1" stop-color="#2b3036"/></linearGradient>
+  <linearGradient id="side" x1="0" x2="1"><stop stop-color="#666e77"/><stop offset=".48" stop-color="#2d343b"/><stop offset="1" stop-color="#151a1f"/></linearGradient>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".35" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .22 0"/><feBlend in="SourceGraphic" mode="overlay"/></filter>
+</defs>
+<rect width="800" height="1000" fill="url(#bg)"/>
+<ellipse cx="560" cy="715" rx="310" ry="120" fill="#000" opacity=".28"/>
+<g filter="url(#grain)">
+  <path d="M170 240 545 170 690 315 318 395z" fill="url(#top)"/>
+  <path d="M170 240 318 395v320L170 566z" fill="#3b434b"/>
+  <path d="M318 395 690 315v320L318 715z" fill="url(#side)"/>
+</g>
+<g stroke="#fff" stroke-opacity=".075" stroke-width="2">
+  <path d="M205 280 651 344"/><path d="M192 326 650 394"/><path d="M222 455 641 505"/><path d="M235 520 638 570"/>
+</g>
+<path d="M176 242 543 174" stroke="#fff" stroke-opacity=".25" stroke-width="6"/>
 </svg>
