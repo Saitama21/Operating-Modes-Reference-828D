@@ -1,4 +1,4 @@
-const CACHE="828d-modes-v0.1.1";
+const CACHE="828d-modes-v0.2.0";
 const CORE=["./","./index.html","./styles.css","./app.js","./manifest.webmanifest","./assets/icon.svg","./assets/flange.svg","./assets/bushing.svg"];
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
