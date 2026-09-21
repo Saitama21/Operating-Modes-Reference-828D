@@ -19,24 +19,28 @@
     <div class="ambient ambient-b"></div>
 
     <header class="topbar">
-      <div>
-        <div class="eyebrow">SINUMERIK 828D</div>
-        <h1 id="screenTitle">Режимы обработки</h1>
+      <div class="top-copy">
+        <div class="eyebrow">CNC REFERENCE</div>
+        <h1 id="screenTitle">РЕЖИМЫ</h1>
+        <div class="top-subtitle">Моя база</div>
       </div>
-      <button class="icon-btn" id="menuBtn" aria-label="Меню">•••</button>
+      <div class="top-actions">
+        <button class="hero-add" id="topAddBtn" aria-label="Добавить запись">＋</button>
+        <button class="icon-btn top-menu" id="menuBtn" aria-label="Меню">•••</button>
+      </div>
     </header>
 
     <main class="viewport">
       <section class="screen home-screen is-active" id="homeScreen" aria-label="Материалы">
-        <div class="home-copy">
-          <div>
-            <span class="kicker">Моя база</span>
-            <h2>Проверенные<br>режимы</h2>
-          </div>
-          <div class="record-total"><b id="recordTotal">0</b><span>записей</span></div>
-        </div>
-
         <div class="material-deck material-grid" id="materialDeck" aria-label="Выбор материала"></div>
+
+        <div class="experience-card" aria-hidden="true">
+          <div class="quote-mark">“</div>
+          <div class="experience-copy">Опыт превращает<br>стружку в результат.</div>
+          <div class="experience-foot">МОЯ БАЗА — МОЁ ПРЕИМУЩЕСТВО</div>
+          <div class="chip-art"><span></span><span></span><span></span></div>
+          <div class="record-total compact"><b id="recordTotal">0</b><span>записей</span></div>
+        </div>
       </section>
 
       <section class="screen detail-screen" id="detailScreen" aria-label="Записи материала">
