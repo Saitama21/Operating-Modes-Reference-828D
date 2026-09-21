@@ -714,66 +714,160 @@ button{color:inherit}
 }
 
 
-/* v0.3.5 — dock model copied from Geometry-calc (read-only reference)
-   Critical rule: the dock is FIXED to the viewport and its bottom position
-   does NOT use Safari safe-area or toolbar geometry. */
+
+/* v0.3.6 — dock lifecycle copied from Beta-test-
+   Reference repo remains untouched.
+   The document owns layout; the dock is fixed directly to the viewport. */
 :root{
+  --safe-top:max(12px,env(safe-area-inset-top));
   --safe-bottom:max(10px,env(safe-area-inset-bottom));
   --dock-bottom:7px;
   --dock-width:95%;
   --dock-height:68px;
   --dock-radius:22px;
   --dock-border:1px;
+  --shell-dock-reserve:92px;
 }
 
-/* iPhone 14 Pro-class calibration from Geometry-calc */
-@media (width:393px) and (-webkit-device-pixel-ratio:3){
+/* Same phone-class calibration used by Beta-test-. */
+@media (min-width:390px) and (max-width:430px){
   :root{
     --dock-bottom:2px;
     --dock-width:87%;
     --dock-height:68px;
-    --dock-border:1px;
   }
 }
 
-/* Reserve room in app content for the dock + safe area.
-   Safe area is CONTENT spacing only — never dock positioning. */
-.screen{
-  padding-bottom:calc(92px + var(--safe-bottom));
+html,
+body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden;
+  overflow-y:hidden;
+  overscroll-behavior:none;
+  background:#000;
 }
 
-/* Geometry-calc behavior: fixed dock, independent of app-shell/Safari layout changes. */
+/* Important: no position:fixed, no fixed-height app viewport, no grid shell.
+   This mirrors Beta-test-'s normal document-flow shell. */
+.app-shell{
+  position:relative;
+  inset:auto;
+  z-index:0;
+  width:100%;
+  max-width:none;
+  height:auto;
+  min-height:100dvh;
+  max-height:none;
+  margin:0;
+  padding:0 0 calc(var(--shell-dock-reserve) + var(--safe-bottom));
+  display:block;
+  overflow:visible;
+  isolation:auto;
+  transform:none;
+}
+
+/* Header owns only the top safe-area. */
+.topbar{
+  position:relative;
+  top:auto;
+  left:auto;
+  right:auto;
+  width:100%;
+  height:calc(var(--app-topbar-height) + var(--safe-top));
+  min-height:calc(var(--app-topbar-height) + var(--safe-top));
+  margin:0;
+  padding:var(--safe-top) 18px 12px;
+}
+
+/* Main surface fills only the space above the reserved dock zone.
+   Dock placement itself is NOT part of this calculation. */
+.viewport{
+  position:relative;
+  inset:auto;
+  width:100%;
+  height:calc(
+    100dvh -
+    var(--app-topbar-height) -
+    var(--safe-top) -
+    var(--shell-dock-reserve) -
+    var(--safe-bottom)
+  );
+  min-height:0;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+}
+
+/* Content no longer carries a second dock reserve. */
+.screen{
+  inset:0;
+  padding:var(--app-content-gap) var(--app-content-x) 0;
+}
+
+/* Detail view has no topbar but keeps the same bottom reserve. */
+.app-shell[data-view="detail"] .topbar{
+  display:none;
+}
+.app-shell[data-view="detail"] .viewport{
+  height:calc(
+    100dvh -
+    var(--shell-dock-reserve) -
+    var(--safe-bottom)
+  );
+}
+
+/* THE DOCK: exact Beta-test- behavior.
+   Fixed to viewport; no safe-area in bottom; no app-shell dependency. */
 .dock{
   position:fixed;
   z-index:70;
   left:50%;
   right:auto;
   bottom:var(--dock-bottom);
-  width:min(var(--dock-width),680px);
+  width:min(var(--dock-width),640px);
   height:var(--dock-height);
   margin:0;
   padding:6px;
   transform:translateX(-50%);
-  border-radius:var(--dock-radius);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   border-width:var(--dock-border);
   border-style:solid;
   border-color:rgba(255,255,255,.09);
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+  border-radius:var(--dock-radius);
   background:
     linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),
     rgba(13,18,24,.93);
-  box-shadow:
-    0 18px 46px rgba(0,0,0,.34),
-    inset 0 1px 0 rgba(255,255,255,.055);
-  backdrop-filter:blur(22px) saturate(135%);
-  -webkit-backdrop-filter:blur(22px) saturate(135%);
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  backdrop-filter:blur(26px);
+  -webkit-backdrop-filter:blur(26px);
   contain:none;
 }
 
-/* Remove the previous app-shell-bound pseudo-contract completely. */
-.dock::before{pointer-events:none}
+/* Keep the decorative highlight inside the dock only. */
+.dock::before{
+  content:"";
+  position:absolute;
+  inset:1px 14px auto;
+  height:1px;
+  border-radius:999px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
+  pointer-events:none;
+}
 
-@media(max-width:390px){
-  :root{--dock-width:95%}
+@media(max-width:389px){
+  :root{
+    --dock-width:95%;
+  }
+}
+
+@media(min-width:700px){
+  .app-shell{
+    width:100%;
+    left:auto;
+    right:auto;
+    transform:none;
+  }
 }
