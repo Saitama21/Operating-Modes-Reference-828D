@@ -970,3 +970,129 @@ button{color:inherit;touch-action:manipulation}
   .app-shell[data-view="home"] .experience-copy{font-size:14px;margin-top:22px}
   .app-shell[data-view="home"] .experience-foot{font-size:6.5px;bottom:9px}
 }
+
+
+/* CONCEPT FIDELITY v0.4.2 — fit concept composition above fixed dock */
+@media(max-width:699px){
+  /* Home is intentionally tighter than other views so the quote card clears the dock. */
+  .app-shell[data-view="home"]{
+    padding-bottom:84px;
+  }
+
+  .app-shell[data-view="home"] .topbar{
+    min-height:calc(146px + var(--safe-top));
+    padding:
+      calc(var(--safe-top) + 16px)
+      20px
+      15px;
+  }
+
+  .app-shell[data-view="home"] .topbar .eyebrow{
+    margin-bottom:16px;
+  }
+
+  .app-shell[data-view="home"] .topbar h1{
+    font-size:44px;
+  }
+
+  .app-shell[data-view="home"] .top-subtitle{
+    margin-top:10px;
+    font-size:27px;
+  }
+
+  .app-shell[data-view="home"] .top-actions{
+    min-height:104px;
+  }
+
+  .app-shell[data-view="home"] .hero-add{
+    width:56px;
+    height:56px;
+    margin-top:52px;
+  }
+
+  .app-shell[data-view="home"] .viewport{
+    padding:14px 17px 12px;
+  }
+
+  .app-shell[data-view="home"] .home-screen{
+    gap:11px;
+  }
+
+  .app-shell[data-view="home"] .material-grid.material-deck{
+    gap:10px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .material-card{
+    aspect-ratio:.94;
+    border-radius:22px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-main{
+    bottom:43px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-title{
+    font-size:21px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-bottom{
+    bottom:11px;
+  }
+
+  .app-shell[data-view="home"] .experience-card{
+    flex:0 0 104px;
+    min-height:104px;
+    padding:14px 18px;
+  }
+
+  .app-shell[data-view="home"] .quote-mark{
+    top:4px;
+    font-size:42px;
+  }
+
+  .app-shell[data-view="home"] .experience-copy{
+    margin-top:22px;
+    max-width:62%;
+    font-size:15px;
+  }
+
+  .app-shell[data-view="home"] .experience-foot{
+    bottom:9px;
+    font-size:6.6px;
+  }
+
+  .app-shell[data-view="home"] .chip-art{
+    right:-18px;
+    bottom:-10px;
+    width:168px;
+    height:102px;
+  }
+}
+
+@media(max-width:389px){
+  .app-shell[data-view="home"]{
+    padding-bottom:80px;
+  }
+  .app-shell[data-view="home"] .topbar{
+    min-height:calc(138px + var(--safe-top));
+  }
+  .app-shell[data-view="home"] .topbar h1{font-size:40px}
+  .app-shell[data-view="home"] .top-subtitle{font-size:24px}
+  .app-shell[data-view="home"] .hero-add{
+    width:51px;height:51px;margin-top:49px
+  }
+  .app-shell[data-view="home"] .material-grid .material-card{aspect-ratio:.97}
+  .app-shell[data-view="home"] .experience-card{
+    flex-basis:96px;
+    min-height:96px;
+  }
+  .app-shell[data-view="home"] .experience-copy{
+    margin-top:19px;
+    font-size:14px;
+  }
+}
+
+/* Keep the concept artwork clean: no noisy post-filtering on material images. */
+.app-shell[data-view="home"] .material-art{
+  filter:saturate(1.02) contrast(1.015);
+}
