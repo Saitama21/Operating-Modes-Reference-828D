@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 260">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 340">
 <defs>
-  <linearGradient id="m" x1="0" x2="1"><stop stop-color="#3a4048"/><stop offset=".25" stop-color="#a9b1ba"/><stop offset=".48" stop-color="#4f5660"/><stop offset=".72" stop-color="#d0d5db"/><stop offset="1" stop-color="#31363d"/></linearGradient>
-  <filter id="b"><feGaussianBlur stdDeviation="1.1"/></filter>
+  <linearGradient id="m" x1="0" x2="1"><stop stop-color="#1e242b"/><stop offset=".16" stop-color="#aab3bc"/><stop offset=".28" stop-color="#353c45"/><stop offset=".46" stop-color="#e6ebef"/><stop offset=".62" stop-color="#59626d"/><stop offset=".78" stop-color="#c8d0d8"/><stop offset="1" stop-color="#242a31"/></linearGradient>
+  <filter id="blur"><feGaussianBlur stdDeviation=".55"/></filter>
 </defs>
-<rect width="500" height="260" fill="none"/>
-<g fill="none" stroke="url(#m)" stroke-width="22" stroke-linecap="round" opacity=".78" filter="url(#b)">
-  <path d="M480 214c-72-12-142-31-197-67-40-26-52-55-21-75 33-22 104-5 124 28 17 29-9 59-57 62-41 3-76-19-91-44"/>
-  <path d="M448 128c-62-1-111-20-129-49-14-23 3-46 38-49 39-4 75 18 80 44 5 30-28 51-67 47"/>
-  <path d="M420 238c-88 2-151-17-179-55"/>
+<rect width="620" height="340" fill="none"/>
+<g fill="none" stroke="url(#m)" stroke-linecap="round" filter="url(#blur)">
+  <path d="M624 287c-112 8-224-18-290-75-44-38-46-85 7-106 57-22 140 8 149 54 9 48-59 81-116 56-47-20-62-70-27-100" stroke-width="30" opacity=".85"/>
+  <path d="M588 150c-74 4-125-19-137-57-9-29 19-54 62-51 47 3 76 39 57 68-18 29-65 35-92 14" stroke-width="24" opacity=".72"/>
+  <path d="M550 325c-119-8-203-39-242-90" stroke-width="19" opacity=".56"/>
 </g>
 </svg>
