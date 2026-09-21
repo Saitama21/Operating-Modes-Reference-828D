@@ -623,3 +623,87 @@ h1{font-size:22px;margin:3px 0 0;letter-spacing:-.03em}
   .param{min-height:34px;padding:6px 4px}
   .record-controls{height:48px}
 }
+
+
+/* v0.3.1 — screenshot fidelity polish */
+.top-actions{
+  position:relative;
+  min-width:118px;
+  min-height:82px;
+  align-items:flex-start;
+  justify-content:flex-end;
+}
+.top-proof{
+  position:absolute;
+  top:0;
+  right:0;
+  width:118px;
+  color:#8e97a3;
+  font-size:7px;
+  line-height:1.18;
+  letter-spacing:.18em;
+  text-align:right;
+  font-weight:700;
+}
+.hero-add{margin-top:30px}
+
+.material-grid .material-card[data-material="steel"] .card-shade,
+.material-grid .material-card[data-material="polyamide"] .card-shade,
+.material-grid .material-card[data-material="brass"] .card-shade{
+  background:linear-gradient(180deg,transparent 22%,rgba(0,0,0,.08) 52%,rgba(0,0,0,.56) 100%);
+}
+.material-grid .material-card[data-material="polyamide"] .card-main{
+  bottom:46px;
+}
+.material-grid .material-card[data-material="polyamide"] .card-title,
+.material-grid .material-card[data-material="polyamide"] .card-subtitle{
+  text-shadow:0 2px 12px rgba(0,0,0,.48);
+}
+
+.experience-card{
+  flex-basis:108px;
+  min-height:108px;
+}
+.chip-art{
+  position:absolute;
+  right:-6px;
+  bottom:-3px;
+  width:170px;
+  height:92px;
+  object-fit:contain;
+  opacity:.62;
+  filter:blur(.15px);
+  pointer-events:none;
+}
+.record-total.compact{
+  right:14px;
+  top:15px;
+  z-index:4;
+}
+.experience-copy{max-width:58%}
+.experience-foot{max-width:58%}
+
+:root{--dock-h:88px}
+.viewport{
+  bottom:calc(var(--dock-h) + env(safe-area-inset-bottom));
+}
+.dock{
+  left:14px;
+  right:14px;
+  bottom:8px;
+  height:calc(72px + env(safe-area-inset-bottom));
+  padding:7px 14px env(safe-area-inset-bottom);
+  border:1px solid rgba(255,255,255,.075);
+  border-radius:27px;
+  overflow:hidden;
+  box-shadow:0 16px 38px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.05);
+}
+.dock-item{height:57px}
+.dock-item small{font-size:10px}
+
+@media (max-height:760px){
+  :root{--dock-h:82px}
+  .dock{height:calc(68px + env(safe-area-inset-bottom));bottom:7px}
+  .experience-card{flex-basis:96px;min-height:96px}
+  .chip-art{width:150px;height:84px}
+}
