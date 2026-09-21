@@ -707,3 +707,71 @@ h1{font-size:22px;margin:3px 0 0;letter-spacing:-.03em}
   .experience-card{flex-basis:96px;min-height:96px}
   .chip-art{width:150px;height:84px}
 }
+
+
+/* v0.3.2 — dock is anchored to the app viewport, not Safari chrome */
+html,body{
+  width:100%;
+  height:100%;
+  min-height:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+}
+
+.app-shell{
+  position:fixed;
+  inset:0 auto auto 0;
+  width:100%;
+  height:100svh;
+  min-height:100svh;
+  max-height:100svh;
+  overflow:hidden;
+}
+
+@supports not (height:100svh){
+  .app-shell{
+    height:100%;
+    min-height:100%;
+    max-height:100%;
+  }
+}
+
+:root{
+  --dock-body-h:72px;
+  --dock-gap:10px;
+}
+
+.viewport{
+  bottom:calc(var(--dock-body-h) + env(safe-area-inset-bottom) + var(--dock-gap));
+}
+
+.dock{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:0;
+  height:calc(var(--dock-body-h) + env(safe-area-inset-bottom));
+  padding:7px 14px max(7px, env(safe-area-inset-bottom));
+  margin:0;
+  border-radius:27px 27px 0 0;
+  transform:none;
+}
+
+@media (display-mode:standalone){
+  .dock{
+    left:14px;
+    right:14px;
+    bottom:0;
+  }
+}
+
+@media (max-height:760px){
+  :root{
+    --dock-body-h:68px;
+    --dock-gap:8px;
+  }
+  .dock{
+    height:calc(var(--dock-body-h) + env(safe-area-inset-bottom));
+    bottom:0;
+  }
+}
