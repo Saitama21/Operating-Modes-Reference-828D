@@ -60,6 +60,7 @@ function renderDeck(){
   MATERIALS.forEach((m,i)=>{
     const c=document.createElement("button");
     c.className="material-card";
+    c.dataset.material=m.id;
     c.style.setProperty("--card-a",m.a);
     c.style.setProperty("--card-b",m.b);
     c.style.setProperty("--card-rgb",m.rgb);
