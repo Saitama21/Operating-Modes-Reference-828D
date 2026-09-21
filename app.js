@@ -1,10 +1,8 @@
 const MATERIALS=[
-  {id:"aisi304",code:"INOX",title:"AISI 304",subtitle:"Нержавеющая сталь",a:"#ffd86a",b:"#a86e09",rgb:"247,190,55"},
-  {id:"steel",code:"STEEL",title:"Сталь S355",subtitle:"Конструкционная сталь",a:"#5f6770",b:"#161b22",rgb:"130,141,154"},
-  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",a:"#78b9ff",b:"#124a92",rgb:"76,154,255"},
-  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",a:"#e2ac4d",b:"#745015",rgb:"230,165,55"},
-  {id:"titanium",code:"Ti",title:"Титан",subtitle:"Ti6Al4V",a:"#9ea9b6",b:"#4f5b68",rgb:"167,180,195"},
-  {id:"aluminium",code:"Al",title:"Алюминий",subtitle:"Al 6061",a:"#8bd7cb",b:"#1c746e",rgb:"94,197,184"}
+  {id:"aisi304",code:"AISI 304",title:"AISI 304",subtitle:"Нержавеющая сталь",short:"НЕРЖАВЕЙКА",a:"#f6cf27",b:"#9e6a00",rgb:"247,190,55",art:"./assets/material-aisi304.svg"},
+  {id:"steel",code:"STEEL",title:"Сталь",subtitle:"Конструкционная сталь",short:"СТАЛЬ",a:"#69717a",b:"#171b20",rgb:"130,141,154",art:"./assets/material-steel.svg"},
+  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",short:"ПОЛИАМИД",a:"#47a8ff",b:"#0a4ca7",rgb:"76,154,255",art:"./assets/material-polyamide.svg"},
+  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",short:"ЛАТУНЬ",a:"#e8b846",b:"#76500d",rgb:"230,165,55",art:"./assets/material-brass.svg"}
 ];
 const SEED=[];
 
@@ -68,7 +66,8 @@ function renderDeck(){
     c.style.setProperty("--card-index",i);
     const count=materialRecords(m.id).length;
     c.innerHTML=
-      '<div class="card-top"><span class="card-code">'+m.code+'</span><span class="card-status">'+count+'</span></div>'+
+      '<img class="material-art" src="'+m.art+'" alt="" draggable="false">'+
+      '<div class="card-shade"></div>'+
       '<div class="card-main"><div class="card-title">'+m.title+'</div><div class="card-subtitle">'+m.subtitle+'</div></div>'+
       '<div class="card-bottom"><span class="card-count">'+(count===1?"1 запись":count+" записей")+'</span><span class="card-open">›</span></div>';
     c.addEventListener("pointerdown",()=>c.classList.add("is-pressed"));
@@ -84,11 +83,12 @@ function renderDeck(){
 }
 function setView(view){
   state.view=view;
+  $("#app").dataset.view=view;
   $$(".screen").forEach(s=>s.classList.remove("is-active"));
   const target=view==="home"?$("#homeScreen"):view==="search"?$("#searchScreen"):$("#detailScreen");
   target.classList.add("is-active");
   $$(".dock-item[data-nav]").forEach(b=>b.classList.toggle("is-active",b.dataset.nav===view));
-  $("#screenTitle").textContent=view==="home"?"Режимы обработки":view==="search"?"Поиск":"Запись";
+  $("#screenTitle").textContent=view==="home"?"РЕЖИМЫ":view==="search"?"ПОИСК":"РЕЖИМ";
   if(view==="search")setTimeout(()=>$("#searchInput").focus(),80);
 }
 function openMaterial(id,recordId){
@@ -105,7 +105,7 @@ function renderDetail(){
   const rows=materialRecords(m.id);
   const empty=!rows.length;
   $("#detailMaterialTag").textContent=m.title;
-  $("#detailMaterialSub").textContent=m.subtitle;
+  $("#detailMaterialSub").textContent=m.short||m.subtitle;
   $("#emptyState").hidden=!empty;
   $(".record-card").hidden=empty;
   $("#editBtn").hidden=empty;
@@ -247,6 +247,7 @@ function bind(){
   $("#recordPrev").onclick=()=>moveRecord(-1);
   $("#recordNext").onclick=()=>moveRecord(1);
   $("#addBtn").onclick=()=>openForm();
+  $("#topAddBtn").onclick=()=>openForm();
   $("#emptyAdd").onclick=()=>openForm();
   $("#editBtn").onclick=()=>openForm(currentRecord());
   $("#recordForm").addEventListener("submit",saveForm);
