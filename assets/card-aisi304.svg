@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#ffef67"/><stop offset=".34" stop-color="#f7cb1e"/>
+    <stop offset=".72" stop-color="#d99a05"/><stop offset="1" stop-color="#8e5a00"/>
+  </linearGradient>
+  <radialGradient id="sun" cx=".18" cy=".12" r=".75">
+    <stop stop-color="#fff6b2" stop-opacity=".72"/><stop offset=".36" stop-color="#fff" stop-opacity=".09"/><stop offset="1" stop-color="#000" stop-opacity=".14"/>
+  </radialGradient>
+  <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
+    <stop stop-color="#3d444b"/><stop offset=".08" stop-color="#d6dadd"/>
+    <stop offset=".18" stop-color="#ffffff"/><stop offset=".30" stop-color="#8f979e"/>
+    <stop offset=".42" stop-color="#edf0f2"/><stop offset=".56" stop-color="#5f666d"/>
+    <stop offset=".70" stop-color="#fbfcfd"/><stop offset=".84" stop-color="#8b9298"/>
+    <stop offset="1" stop-color="#353b41"/>
+  </linearGradient>
+  <linearGradient id="steelSide" x1="0" y1="0" x2="0" y2="1">
+    <stop stop-color="#f5f7f8"/><stop offset=".2" stop-color="#aeb5ba"/>
+    <stop offset=".45" stop-color="#f0f2f3"/><stop offset=".7" stop-color="#777f86"/>
+    <stop offset="1" stop-color="#3f464c"/>
+  </linearGradient>
+  <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency=".9 .015" numOctaves="1" seed="9" result="n"/>
+    <feColorMatrix in="n" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .08 0" result="n2"/>
+    <feBlend in="SourceGraphic" in2="n2" mode="soft-light"/>
+  </filter>
+  <filter id="shadow" x="-35%" y="-35%" width="170%" height="190%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="28" result="b"/>
+    <feOffset dy="30" result="o"/>
+    <feComponentTransfer in="o"><feFuncA type="linear" slope=".38"/></feComponentTransfer>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="900" height="1100" fill="url(#bg)"/>
+<rect width="900" height="1100" fill="url(#sun)"/>
+<g opacity=".22" stroke="#fff">
+  <path d="M-80 880C180 760 280 570 305 300" stroke-width="54" fill="none"/>
+  <path d="M-50 930C220 800 355 615 392 310" stroke-width="7" fill="none"/>
+</g>
+<g transform="translate(378 -35)" filter="url(#shadow)">
+  <ellipse cx="355" cy="205" rx="320" ry="136" fill="url(#steel)" filter="url(#grain)"/>
+  <path d="M35 205v430c0 90 143 164 320 164s320-74 320-164V205c0 76-143 138-320 138S35 281 35 205z" fill="url(#steelSide)" filter="url(#grain)"/>
+  <ellipse cx="355" cy="205" rx="320" ry="136" fill="url(#steel)"/>
+  <ellipse cx="355" cy="202" rx="244" ry="91" fill="#22272c"/>
+  <ellipse cx="355" cy="198" rx="214" ry="69" fill="url(#steel)"/>
+  <ellipse cx="355" cy="197" rx="162" ry="47" fill="#15191d"/>
+  <path d="M82 272c145 53 399 53 547 0" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="5"/>
+  <path d="M70 330c160 54 417 54 570 0" fill="none" stroke="#000" stroke-opacity=".10" stroke-width="4"/>
+</g>
+<rect width="900" height="1100" fill="none" stroke="#fff" stroke-opacity=".11" stroke-width="8"/>
+</svg>
