@@ -1,9 +1,9 @@
-const CACHE="828d-modes-v0.3.0";
+const CACHE="828d-modes-v0.3.1";
 const CORE=[
   "./","./index.html","./styles.css","./app.js","./manifest.webmanifest",
   "./assets/icon.svg","./assets/flange.svg","./assets/bushing.svg",
   "./assets/material-aisi304.svg","./assets/material-steel.svg",
-  "./assets/material-polyamide.svg","./assets/material-brass.svg"
+  "./assets/material-polyamide.svg","./assets/material-brass.svg","./assets/chips.svg"
 ];
 
 self.addEventListener("install",event=>{
