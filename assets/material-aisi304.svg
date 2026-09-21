@@ -1,21 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
 <defs>
-  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe440"/><stop offset=".36" stop-color="#f4bf16"/><stop offset=".72" stop-color="#d99a09"/><stop offset="1" stop-color="#a96800"/></linearGradient>
-  <linearGradient id="steel" x1="0" y1="0" x2="1" y2=".2"><stop stop-color="#5c6269"/><stop offset=".14" stop-color="#f8fbfc"/><stop offset=".28" stop-color="#a5adb5"/><stop offset=".44" stop-color="#ffffff"/><stop offset=".62" stop-color="#858d95"/><stop offset=".82" stop-color="#e6eaed"/><stop offset="1" stop-color="#555d66"/></linearGradient>
-  <linearGradient id="rim" x1="0" x2="1"><stop stop-color="#3d4248"/><stop offset=".3" stop-color="#fafcfd"/><stop offset=".56" stop-color="#8c949d"/><stop offset=".8" stop-color="#fff"/><stop offset="1" stop-color="#4a5159"/></linearGradient>
-  <filter id="brush"><feTurbulence type="fractalNoise" baseFrequency=".006 .85" numOctaves="1" seed="8" result="n"/><feColorMatrix in="n" values="1 0 0 0 .1 0 1 0 0 .1 0 0 1 0 .1 0 0 0 .18 0"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
-  <radialGradient id="shine" cx=".25" cy=".15" r=".8"><stop stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></radialGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe747"/><stop offset=".34" stop-color="#f6c21b"/><stop offset=".72" stop-color="#dda00b"/><stop offset="1" stop-color="#a96b00"/></linearGradient>
+  <linearGradient id="metal" x1="0" x2="1"><stop stop-color="#555c64"/><stop offset=".12" stop-color="#f7f9fa"/><stop offset=".28" stop-color="#a7afb6"/><stop offset=".46" stop-color="#fff"/><stop offset=".65" stop-color="#8b939b"/><stop offset=".83" stop-color="#e9edef"/><stop offset="1" stop-color="#59616a"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="15"/><feOffset dy="20"/><feComponentTransfer><feFuncA type="linear" slope=".25"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
 <rect width="800" height="1000" fill="url(#gold)"/>
-<rect width="800" height="1000" fill="url(#shine)" opacity=".65"/>
-<g filter="url(#brush)">
-  <ellipse cx="675" cy="195" rx="330" ry="118" fill="url(#steel)"/>
-  <path d="M345 192h660v360c0 80-148 145-330 145S345 632 345 552z" fill="url(#rim)"/>
-  <ellipse cx="675" cy="192" rx="330" ry="118" fill="url(#steel)"/>
-  <ellipse cx="675" cy="191" rx="242" ry="76" fill="#20252a"/>
-  <ellipse cx="675" cy="188" rx="224" ry="63" fill="url(#rim)" opacity=".92"/>
-  <ellipse cx="675" cy="187" rx="184" ry="48" fill="#171b20"/>
+<path d="M65 0h78c-18 211 5 367 65 493 42 88 95 154 158 208l-95 114C129 702 57 559 31 390 16 291 26 148 65 0z" fill="#fff" opacity=".10"/>
+<g filter="url(#shadow)">
+  <path d="M470 -40h350v520c0 86-78 155-175 155s-175-69-175-155z" fill="url(#metal)"/>
+  <ellipse cx="645" cy="2" rx="175" ry="76" fill="#dfe3e6"/>
+  <ellipse cx="645" cy="5" rx="128" ry="51" fill="url(#metal)"/>
+  <ellipse cx="645" cy="6" rx="91" ry="33" fill="#20252a"/>
 </g>
-<path d="M0 760c165-60 270-123 333-207 54-72 75-159 81-261" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="34"/>
-<rect width="800" height="1000" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="8"/>
+<path d="M475 425c102 39 218 39 340 0" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="3"/>
 </svg>
