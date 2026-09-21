@@ -56,58 +56,31 @@ function setAccent(m){
   document.documentElement.style.setProperty("--accent-rgb",m.rgb);
   document.documentElement.style.setProperty("--accent","rgb("+m.rgb+")");
 }
-function clampOffset(d){if(d>2||d<-2)return null;return d}
-
 function renderDeck(){
-  const deck=$("#materialDeck"),dots=$("#materialDots");
-  deck.innerHTML="";dots.innerHTML="";
+  const deck=$("#materialDeck");
+  deck.innerHTML="";
   MATERIALS.forEach((m,i)=>{
-    let raw=i-state.materialIndex;
-    if(raw>MATERIALS.length/2)raw-=MATERIALS.length;
-    if(raw<-MATERIALS.length/2)raw+=MATERIALS.length;
-    const off=clampOffset(raw);
     const c=document.createElement("button");
-    c.className="material-card"+(off===null?" is-hidden":"");
-    c.dataset.offset=off===null?99:off;
+    c.className="material-card";
     c.style.setProperty("--card-a",m.a);
     c.style.setProperty("--card-b",m.b);
     c.style.setProperty("--card-rgb",m.rgb);
+    c.style.setProperty("--card-index",i);
     const count=materialRecords(m.id).length;
     c.innerHTML=
-      '<div class="card-code">'+m.code+'</div>'+
-      '<div class="card-title">'+m.title+'</div>'+
-      '<div class="card-subtitle">'+m.subtitle+'</div>'+
-      '<div class="card-bottom"><div class="card-count"><b>'+count+'</b><span>'+(count===1?"запись":"записей")+'</span></div><span class="card-open">›</span></div>';
+      '<div class="card-top"><span class="card-code">'+m.code+'</span><span class="card-status">'+count+'</span></div>'+
+      '<div class="card-main"><div class="card-title">'+m.title+'</div><div class="card-subtitle">'+m.subtitle+'</div></div>'+
+      '<div class="card-bottom"><span class="card-count">'+(count===1?"1 запись":count+" записей")+'</span><span class="card-open">›</span></div>';
+    c.addEventListener("pointerdown",()=>c.classList.add("is-pressed"));
+    ["pointerup","pointercancel","pointerleave"].forEach(ev=>c.addEventListener(ev,()=>c.classList.remove("is-pressed")));
     c.addEventListener("click",()=>{
-      if(i===state.materialIndex){
-        openMaterial(m.id);
-      }else{
-        state.materialIndex=i;
-        renderDeck();
-        triggerDeckSnap();
-      }
+      state.materialIndex=i;
+      setAccent(m);
+      openMaterial(m.id);
     });
     deck.appendChild(c);
-    const d=document.createElement("i");
-    if(i===state.materialIndex)d.className="active";
-    dots.appendChild(d);
   });
-  setAccent(MATERIALS[state.materialIndex]);
   $("#recordTotal").textContent=state.records.length;
-}
-let materialSnapTimer=null;
-function triggerDeckSnap(){
-  const deck=$("#materialDeck");
-  deck.classList.remove("is-snapping");
-  void deck.offsetWidth;
-  deck.classList.add("is-snapping");
-  clearTimeout(materialSnapTimer);
-  materialSnapTimer=setTimeout(()=>deck.classList.remove("is-snapping"),820);
-}
-function moveMaterial(dir){
-  state.materialIndex=(state.materialIndex+dir+MATERIALS.length)%MATERIALS.length;
-  renderDeck();
-  triggerDeckSnap();
 }
 function setView(view){
   state.view=view;
@@ -270,8 +243,6 @@ async function importData(file){
   alert("Импорт завершён");
 }
 function bind(){
-  $("#materialPrev").onclick=()=>moveMaterial(-1);
-  $("#materialNext").onclick=()=>moveMaterial(1);
   $("#backBtn").onclick=()=>{renderDeck();setView("home");};
   $("#recordPrev").onclick=()=>moveRecord(-1);
   $("#recordNext").onclick=()=>moveRecord(1);
@@ -301,15 +272,7 @@ function bind(){
     try{if(e.target.files[0])await importData(e.target.files[0]);}
     catch(err){alert("Не удалось импортировать файл");}
   };
-  let sx=0;
-  $("#materialDeck").addEventListener("touchstart",e=>sx=e.changedTouches[0].clientX,{passive:true});
-  $("#materialDeck").addEventListener("touchend",e=>{
-    const dx=e.changedTouches[0].clientX-sx;
-    if(Math.abs(dx)>45)moveMaterial(dx<0?1:-1);
-  },{passive:true});
   document.addEventListener("keydown",e=>{
-    if(state.view==="home"&&e.key==="ArrowLeft")moveMaterial(-1);
-    if(state.view==="home"&&e.key==="ArrowRight")moveMaterial(1);
     if(state.view==="detail"&&e.key==="ArrowLeft")moveRecord(-1);
     if(state.view==="detail"&&e.key==="ArrowRight")moveRecord(1);
   });
