@@ -525,3 +525,304 @@ button{color:inherit;touch-action:manipulation}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+
+/* CONCEPT FIDELITY v0.4.0 — home screen
+   Visual target: dark CNC reference concept supplied by the user.
+   Dock geometry is intentionally NOT changed here. */
+@media(max-width:699px){
+  html{
+    background:
+      radial-gradient(circle at 12% 7%,rgba(86,116,142,.07),transparent 24rem),
+      radial-gradient(circle at 90% 84%,rgba(39,78,105,.065),transparent 20rem),
+      linear-gradient(180deg,#10161d 0%,#0a1118 46%,#060b10 100%);
+  }
+
+  .app-shell[data-view="home"]{
+    background:
+      radial-gradient(circle at 50% -10%,rgba(255,255,255,.035),transparent 24rem),
+      linear-gradient(180deg,rgba(18,24,31,.78),rgba(6,11,16,.18));
+  }
+
+  .app-shell[data-view="home"] .topbar{
+    position:relative;
+    top:auto;
+    min-height:calc(170px + var(--safe-top));
+    padding:
+      calc(var(--safe-top) + 23px)
+      22px
+      22px;
+    align-items:flex-start;
+    background:
+      radial-gradient(circle at 84% 20%,rgba(255,255,255,.035),transparent 10rem),
+      linear-gradient(180deg,rgba(22,28,35,.98),rgba(13,20,27,.94));
+    border-bottom:1px solid rgba(255,255,255,.045);
+    box-shadow:
+      0 18px 42px rgba(0,0,0,.16),
+      inset 0 -1px 0 rgba(255,255,255,.018);
+    backdrop-filter:blur(28px) saturate(128%);
+    -webkit-backdrop-filter:blur(28px) saturate(128%);
+  }
+
+  .app-shell[data-view="home"] .top-copy{
+    padding-top:4px;
+  }
+
+  .app-shell[data-view="home"] .topbar .eyebrow{
+    margin-bottom:24px;
+    color:#9da6b1;
+    font-size:9px;
+    letter-spacing:.34em;
+    font-weight:800;
+  }
+
+  .app-shell[data-view="home"] .topbar h1{
+    font-size:48px;
+    line-height:.84;
+    letter-spacing:-.062em;
+    font-weight:920;
+    color:#fbfcfd;
+    text-shadow:0 7px 28px rgba(0,0,0,.24);
+  }
+
+  .app-shell[data-view="home"] .top-subtitle{
+    margin-top:14px;
+    color:#aeb5bf;
+    font-size:30px;
+    line-height:.96;
+    font-weight:620;
+    letter-spacing:-.042em;
+  }
+
+  .app-shell[data-view="home"] .top-actions{
+    min-width:132px;
+    min-height:124px;
+  }
+
+  .app-shell[data-view="home"] .top-proof{
+    top:4px;
+    right:0;
+    width:132px;
+    color:#8f98a4;
+    font-size:7px;
+    line-height:1.24;
+    letter-spacing:.22em;
+    font-weight:800;
+  }
+
+  .app-shell[data-view="home"] .hero-add{
+    width:62px;
+    height:62px;
+    margin-top:66px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.24);
+    background:
+      radial-gradient(circle at 34% 24%,rgba(255,255,255,.13),transparent 34%),
+      linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+    color:#fbfcfd;
+    font-size:40px;
+    font-weight:250;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.16),
+      0 13px 34px rgba(0,0,0,.28);
+    backdrop-filter:blur(24px) saturate(135%);
+    -webkit-backdrop-filter:blur(24px) saturate(135%);
+  }
+
+  .app-shell[data-view="home"] .viewport{
+    padding:18px 18px 24px;
+  }
+
+  .app-shell[data-view="home"] .home-screen{
+    gap:16px;
+    min-height:0;
+  }
+
+  .app-shell[data-view="home"] .material-grid.material-deck{
+    flex:none;
+    min-height:0;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:none;
+    grid-auto-rows:auto;
+    gap:13px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .material-card{
+    aspect-ratio:.79;
+    min-height:0;
+    height:auto;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.18);
+    background:#161c22;
+    box-shadow:
+      0 18px 36px rgba(0,0,0,.30),
+      inset 0 1px 0 rgba(255,255,255,.16),
+      inset 0 -1px 0 rgba(0,0,0,.18);
+  }
+
+  .app-shell[data-view="home"] .material-art{
+    transform:scale(1.015);
+    filter:saturate(1.04) contrast(1.035);
+  }
+
+  .app-shell[data-view="home"] .card-shade{
+    background:
+      linear-gradient(180deg,rgba(0,0,0,.015) 0 40%,rgba(0,0,0,.08) 60%,rgba(0,0,0,.61) 100%);
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-main{
+    left:16px;
+    right:14px;
+    bottom:52px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-title{
+    font-size:23px;
+    line-height:.96;
+    letter-spacing:-.045em;
+    font-weight:880;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-subtitle{
+    display:none;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-bottom{
+    left:16px;
+    right:13px;
+    bottom:15px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-count{
+    font-size:12px;
+    font-weight:650;
+    letter-spacing:-.01em;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-open{
+    width:24px;
+    height:24px;
+    font-size:27px;
+    font-weight:300;
+  }
+
+  .app-shell[data-view="home"] .material-card[data-material="aisi304"]{
+    border-color:rgba(255,232,153,.24);
+    box-shadow:
+      0 18px 38px rgba(0,0,0,.28),
+      0 0 28px rgba(225,171,24,.07),
+      inset 0 1px 0 rgba(255,255,255,.23);
+  }
+
+  .app-shell[data-view="home"] .material-card[data-material="aisi304"] .card-shade{
+    background:
+      linear-gradient(180deg,rgba(255,210,40,.015) 0 44%,rgba(134,85,0,.03) 64%,rgba(82,52,0,.20) 100%);
+  }
+
+  .app-shell[data-view="home"] .material-card[data-material="steel"] .card-shade{
+    background:linear-gradient(180deg,transparent 28%,rgba(0,0,0,.11) 62%,rgba(0,0,0,.61) 100%);
+  }
+
+  .app-shell[data-view="home"] .material-card[data-material="polyamide"] .card-shade{
+    background:linear-gradient(180deg,transparent 28%,rgba(2,43,95,.05) 58%,rgba(0,32,78,.55) 100%);
+  }
+
+  .app-shell[data-view="home"] .material-card[data-material="brass"] .card-shade{
+    background:linear-gradient(180deg,transparent 30%,rgba(74,41,0,.04) 60%,rgba(58,34,0,.50) 100%);
+  }
+
+  .app-shell[data-view="home"] .experience-card{
+    flex:0 0 142px;
+    min-height:142px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.10);
+    padding:20px 20px;
+    background:
+      radial-gradient(circle at 83% 18%,rgba(255,255,255,.055),transparent 18rem),
+      linear-gradient(112deg,#1b232c 0%,#111820 48%,#0b1016 100%);
+    box-shadow:
+      0 16px 32px rgba(0,0,0,.22),
+      inset 0 1px 0 rgba(255,255,255,.055);
+  }
+
+  .app-shell[data-view="home"] .quote-mark{
+    top:9px;
+    left:20px;
+    color:#4f5863;
+    font-size:48px;
+  }
+
+  .app-shell[data-view="home"] .experience-copy{
+    max-width:61%;
+    margin-top:34px;
+    color:#d3d7dd;
+    font-size:18px;
+    line-height:1.24;
+    letter-spacing:-.025em;
+    font-weight:450;
+  }
+
+  .app-shell[data-view="home"] .experience-foot{
+    left:20px;
+    bottom:16px;
+    max-width:61%;
+    color:#717b87;
+    font-size:7.5px;
+    letter-spacing:.25em;
+    font-weight:800;
+  }
+
+  .app-shell[data-view="home"] .chip-art{
+    right:-16px;
+    bottom:-5px;
+    width:190px;
+    height:122px;
+    opacity:.72;
+    filter:contrast(1.12) brightness(.96);
+  }
+
+  .app-shell[data-view="home"] .record-total.compact{
+    display:none;
+  }
+
+  /* Concept-like dock surface only; position/geometry stays under UI_CONTRACT. */
+  .app-shell[data-view="home"] .dock{
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.018)),
+      rgba(18,23,29,.94);
+    border-color:rgba(255,255,255,.10);
+    box-shadow:
+      0 22px 58px rgba(0,0,0,.44),
+      inset 0 1px 0 rgba(255,255,255,.07);
+  }
+
+  .app-shell[data-view="home"] .dock-item{
+    color:#a8afb9;
+    font-weight:650;
+  }
+
+  .app-shell[data-view="home"] .dock-item.is-active{
+    color:#ffd64c;
+    background:rgba(244,199,65,.085);
+    box-shadow:inset 0 0 0 1px rgba(244,199,65,.055);
+  }
+}
+
+@media(max-width:389px){
+  .app-shell[data-view="home"] .topbar{
+    min-height:calc(156px + var(--safe-top));
+    padding-left:17px;
+    padding-right:17px;
+  }
+  .app-shell[data-view="home"] .topbar h1{font-size:43px}
+  .app-shell[data-view="home"] .top-subtitle{font-size:26px}
+  .app-shell[data-view="home"] .top-actions{min-width:116px}
+  .app-shell[data-view="home"] .top-proof{width:116px;font-size:6.5px}
+  .app-shell[data-view="home"] .hero-add{width:56px;height:56px;margin-top:63px;font-size:36px}
+  .app-shell[data-view="home"] .viewport{padding:14px 14px 22px}
+  .app-shell[data-view="home"] .material-grid.material-deck{gap:10px}
+  .app-shell[data-view="home"] .material-grid .material-card{border-radius:21px}
+  .app-shell[data-view="home"] .material-grid .card-title{font-size:21px}
+  .app-shell[data-view="home"] .experience-card{flex-basis:126px;min-height:126px}
+  .app-shell[data-view="home"] .experience-copy{font-size:16px}
+}
