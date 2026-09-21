@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#090b0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="828D Modes">
+  <title>Operating Modes Reference 828D</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app" class="app-shell" data-view="home">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">SINUMERIK 828D</div>
+        <h1 id="screenTitle">Режимы обработки</h1>
+      </div>
+      <button class="icon-btn" id="menuBtn" aria-label="Меню">•••</button>
+    </header>
+
+    <main class="viewport">
+      <section class="screen home-screen is-active" id="homeScreen" aria-label="Материалы">
+        <div class="home-copy">
+          <div>
+            <span class="kicker">Моя база</span>
+            <h2>Проверенные<br>режимы</h2>
+          </div>
+          <div class="record-total"><b id="recordTotal">0</b><span>записей</span></div>
+        </div>
+
+        <div class="deck-wrap">
+          <button class="deck-nav prev" id="materialPrev" aria-label="Предыдущий материал">‹</button>
+          <div class="material-deck" id="materialDeck"></div>
+          <button class="deck-nav next" id="materialNext" aria-label="Следующий материал">›</button>
+        </div>
+
+        <div class="deck-dots" id="materialDots"></div>
+        <div class="deck-hint">Свайпни карточки или нажми на материал</div>
+      </section>
+
+      <section class="screen detail-screen" id="detailScreen" aria-label="Записи материала">
+        <div class="detail-head">
+          <button class="back-btn" id="backBtn" aria-label="Назад">‹</button>
+          <div>
+            <div class="material-tag" id="detailMaterialTag">AISI 304</div>
+            <div class="detail-subtitle" id="detailMaterialSub">Нержавеющая сталь</div>
+          </div>
+          <button class="icon-btn small" id="editBtn" aria-label="Редактировать">✎</button>
+        </div>
+
+        <div class="record-card">
+          <div class="record-visual" id="recordVisual">
+            <img id="recordImage" alt="">
+            <div class="record-visual-fallback" id="recordFallback">
+              <div class="metal-ring"></div>
+            </div>
+            <div class="record-index" id="recordIndex">1 / 1</div>
+          </div>
+
+          <div class="record-title-row">
+            <div>
+              <div class="record-title" id="recordTitle">Фланец Ø185</div>
+              <div class="record-date" id="recordDate">Проверенный режим</div>
+            </div>
+            <button class="note-indicator" id="noteBtn" aria-label="Заметка">▤</button>
+          </div>
+
+          <div class="param-grid">
+            <div class="param"><span>Заготовка</span><strong id="pDia">Ø185 мм</strong></div>
+            <div class="param"><span>Операция</span><strong id="pOperation">Расточка</strong></div>
+            <div class="param"><span>Обороты</span><strong id="pRpm">500 rpm</strong></div>
+            <div class="param"><span>Подача</span><strong id="pFeed">0.06 мм/об</strong></div>
+            <div class="param"><span>Глубина</span><strong id="pDepth">1.0 мм</strong></div>
+            <div class="param"><span>Инструмент</span><strong id="pTool">WNMG 080408</strong></div>
+          </div>
+
+          <div class="note-preview" id="notePreview" hidden></div>
+
+          <div class="record-controls">
+            <button class="round-btn" id="recordPrev" aria-label="Предыдущая запись">‹</button>
+            <span id="recordCounter">1 / 1</span>
+            <button class="round-btn" id="recordNext" aria-label="Следующая запись">›</button>
+          </div>
+        </div>
+
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-orb">＋</div>
+          <h3>Пока пусто</h3>
+          <p>Добавь первый проверенный режим для этого материала.</p>
+          <button class="primary-btn" id="emptyAdd">Добавить запись</button>
+        </div>
+      </section>
+
+      <section class="screen search-screen" id="searchScreen" aria-label="Поиск">
+        <div class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Деталь, материал, инструмент…" autocomplete="off">
+          <button id="clearSearch" aria-label="Очистить">×</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </section>
+    </main>
+
+    <nav class="dock" aria-label="Навигация">
+      <button class="dock-item is-active" data-nav="home"><span>⌂</span><small>Главная</small></button>
+      <button class="dock-item add" id="addBtn"><span>＋</span><small>Добавить</small></button>
+      <button class="dock-item" data-nav="search"><span>⌕</span><small>Поиск</small></button>
+    </nav>
+  </div>
+
+  <dialog class="sheet" id="recordDialog">
+    <form method="dialog" id="recordForm">
+      <div class="sheet-head">
+        <div>
+          <div class="eyebrow">ЛИЧНАЯ ЗАПИСЬ</div>
+          <h3 id="formTitle">Новый режим</h3>
+        </div>
+        <button class="icon-btn" value="cancel" formnovalidate>×</button>
+      </div>
+
+      <div class="form-grid">
+        <label class="field"><span>Материал</span><select id="fMaterial" required></select></label>
+        <label class="field wide"><span>Название детали</span><input id="fTitle" required placeholder="Напр. Фланец Ø185"></label>
+        <label class="field"><span>Ø заготовки, мм</span><input id="fDia" inputmode="decimal" placeholder="185"></label>
+        <label class="field"><span>Операция</span><input id="fOperation" placeholder="Расточка"></label>
+        <label class="field"><span>Обороты, rpm</span><input id="fRpm" inputmode="decimal" placeholder="500"></label>
+        <label class="field"><span>Подача, мм/об</span><input id="fFeed" inputmode="decimal" placeholder="0.06"></label>
+        <label class="field"><span>Глубина, мм</span><input id="fDepth" inputmode="decimal" placeholder="1.0"></label>
+        <label class="field"><span>Инструмент</span><input id="fTool" placeholder="WNMG 080408"></label>
+        <label class="field wide"><span>Фото детали</span><input id="fPhoto" type="file" accept="image/*"></label>
+        <label class="field wide note-field"><span>Заметка <em>необязательно</em></span><textarea id="fNote" rows="2" placeholder="Напр. на 600 rpm пищит, 500 — стабильно"></textarea></label>
+      </div>
+
+      <div class="sheet-actions">
+        <button type="button" class="danger-btn" id="deleteBtn" hidden>Удалить</button>
+        <button type="submit" class="primary-btn">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="sheet compact-sheet" id="noteDialog">
+    <div class="sheet-head">
+      <div>
+        <div class="eyebrow">ЗАМЕТКА</div>
+        <h3 id="noteTitle">Фланец Ø185</h3>
+      </div>
+      <button class="icon-btn" id="noteClose">×</button>
+    </div>
+    <div class="note-full" id="noteFull"></div>
+  </dialog>
+
+  <dialog class="sheet compact-sheet" id="menuDialog">
+    <div class="sheet-head">
+      <div>
+        <div class="eyebrow">OPERATING MODES REFERENCE 828D</div>
+        <h3>Локальная база</h3>
+      </div>
+      <button class="icon-btn" id="menuClose">×</button>
+    </div>
+    <p class="sheet-copy">Все записи и фотографии хранятся только на этом устройстве. Синхронизации и аккаунтов нет.</p>
+    <div class="menu-actions">
+      <button class="secondary-btn" id="exportBtn">Экспорт JSON</button>
+      <label class="secondary-btn file-btn">Импорт JSON<input id="importInput" type="file" accept="application/json"></label>
+    </div>
+  </dialog>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
