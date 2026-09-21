@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#6fd0ff"/><stop offset=".34" stop-color="#1d9ced"/><stop offset=".68" stop-color="#0756b4"/><stop offset="1" stop-color="#032b68"/>
+  </linearGradient>
+  <radialGradient id="spot" cx=".25" cy=".16" r=".75">
+    <stop stop-color="#fff" stop-opacity=".34"/><stop offset=".44" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#000" stop-opacity=".16"/>
+  </radialGradient>
+  <linearGradient id="front" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#ffffff"/><stop offset=".45" stop-color="#eef8fd"/><stop offset=".8" stop-color="#d4e6ef"/><stop offset="1" stop-color="#c0d8e5"/>
+  </linearGradient>
+  <linearGradient id="side" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#d8edf6"/><stop offset=".5" stop-color="#b9d3e1"/><stop offset="1" stop-color="#91b6ca"/>
+  </linearGradient>
+  <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#ffffff"/><stop offset=".65" stop-color="#f3fbff"/><stop offset="1" stop-color="#dfeef6"/>
+  </linearGradient>
+  <filter id="soft" x="-35%" y="-35%" width="170%" height="190%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="24"/><feOffset dy="30"/>
+    <feComponentTransfer><feFuncA type="linear" slope=".28"/></feComponentTransfer>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+<rect width="900" height="1100" fill="url(#bg)"/>
+<rect width="900" height="1100" fill="url(#spot)"/>
+<ellipse cx="470" cy="810" rx="290" ry="110" fill="#003c85" opacity=".32"/>
+<g transform="translate(80 100)" filter="url(#soft)">
+  <path d="M165 270 495 202 650 333 318 408z" fill="url(#top)"/>
+  <path d="M165 270 318 408v352L165 602z" fill="url(#side)"/>
+  <path d="M318 408 650 333v352L318 760z" fill="url(#front)"/>
+  <path d="M187 284 490 221 629 337" fill="none" stroke="#fff" stroke-opacity=".78" stroke-width="4"/>
+  <path d="M333 428v307" stroke="#fff" stroke-opacity=".28" stroke-width="3"/>
+  <path d="M347 439 625 376" stroke="#fff" stroke-opacity=".10" stroke-width="2"/>
+</g>
+<path d="M90 230c215-80 447-66 655 39" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="26"/>
+<rect width="900" height="1100" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="8"/>
+</svg>
