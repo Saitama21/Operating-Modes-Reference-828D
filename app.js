@@ -6,11 +6,7 @@ const MATERIALS=[
   {id:"titanium",code:"Ti",title:"Титан",subtitle:"Ti6Al4V",a:"#9ea9b6",b:"#4f5b68",rgb:"167,180,195"},
   {id:"aluminium",code:"Al",title:"Алюминий",subtitle:"Al 6061",a:"#8bd7cb",b:"#1c746e",rgb:"94,197,184"}
 ];
-const SEED=[
-  {id:"r1",materialId:"aisi304",title:"Фланец Ø185",dia:"185",operation:"Расточка",rpm:"500",feed:"0.06",depth:"1.0",tool:"WNMG 080408",note:"С 600 rpm был писк. На 500 rpm стабильно.",image:"./assets/flange.svg",createdAt:"2026-09-21T08:00:00Z"},
-  {id:"r2",materialId:"polyamide",title:"Втулка Ø50",dia:"50",operation:"Наружное точение",rpm:"850",feed:"0.15",depth:"2.0",tool:"CNMG 120404",note:"Чистый рез. Следить за длинной стружкой.",image:"./assets/bushing.svg",createdAt:"2026-09-21T08:05:00Z"},
-  {id:"r3",materialId:"aisi304",title:"Внутренняя Ø40",dia:"34.5",operation:"Расточка Ø34.5→40",rpm:"750",feed:"0.07",depth:"1.0",tool:"Расточная державка",note:"Вылет 80 мм. Для чистовой F 0.04–0.05.",image:"",createdAt:"2026-09-21T08:10:00Z"}
-];
+const SEED=[];
 
 const $=s=>document.querySelector(s);
 const $$=s=>Array.from(document.querySelectorAll(s));
@@ -51,11 +47,7 @@ async function dbDelete(id){
   });
 }
 async function initData(){
-  let rows=await dbAll();
-  if(!rows.length){
-    for(const r of SEED)await dbPut(r);
-    rows=await dbAll();
-  }
+  const rows=await dbAll();
   state.records=rows.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
 }
 function mat(id){return MATERIALS.find(m=>m.id===id)||MATERIALS[0]}
