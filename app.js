@@ -79,8 +79,13 @@ function renderDeck(){
       '<div class="card-subtitle">'+m.subtitle+'</div>'+
       '<div class="card-bottom"><div class="card-count"><b>'+count+'</b><span>'+(count===1?"запись":"записей")+'</span></div><span class="card-open">›</span></div>';
     c.addEventListener("click",()=>{
-      if(i===state.materialIndex)openMaterial(m.id);
-      else{state.materialIndex=i;renderDeck();}
+      if(i===state.materialIndex){
+        openMaterial(m.id);
+      }else{
+        state.materialIndex=i;
+        renderDeck();
+        triggerDeckSnap();
+      }
     });
     deck.appendChild(c);
     const d=document.createElement("i");
@@ -90,9 +95,19 @@ function renderDeck(){
   setAccent(MATERIALS[state.materialIndex]);
   $("#recordTotal").textContent=state.records.length;
 }
+let materialSnapTimer=null;
+function triggerDeckSnap(){
+  const deck=$("#materialDeck");
+  deck.classList.remove("is-snapping");
+  void deck.offsetWidth;
+  deck.classList.add("is-snapping");
+  clearTimeout(materialSnapTimer);
+  materialSnapTimer=setTimeout(()=>deck.classList.remove("is-snapping"),820);
+}
 function moveMaterial(dir){
   state.materialIndex=(state.materialIndex+dir+MATERIALS.length)%MATERIALS.length;
   renderDeck();
+  triggerDeckSnap();
 }
 function setView(view){
   state.view=view;
