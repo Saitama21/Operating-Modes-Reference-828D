@@ -1,8 +1,8 @@
 const MATERIALS=[
-  {id:"aisi304",code:"AISI 304",title:"AISI 304",subtitle:"Нержавеющая сталь",short:"НЕРЖАВЕЙКА",a:"#f6cf27",b:"#9e6a00",rgb:"247,190,55",art:"./assets/material-aisi304.svg?v=0.4.2"},
-  {id:"steel",code:"STEEL",title:"Сталь",subtitle:"Конструкционная сталь",short:"СТАЛЬ",a:"#69717a",b:"#171b20",rgb:"130,141,154",art:"./assets/material-steel.svg?v=0.4.2"},
-  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",short:"ПОЛИАМИД",a:"#47a8ff",b:"#0a4ca7",rgb:"76,154,255",art:"./assets/material-polyamide.svg?v=0.4.2"},
-  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",short:"ЛАТУНЬ",a:"#e8b846",b:"#76500d",rgb:"230,165,55",art:"./assets/material-brass.svg?v=0.4.2"}
+  {id:"aisi304",code:"AISI 304",title:"AISI 304",subtitle:"Нержавеющая сталь",short:"НЕРЖАВЕЙКА",a:"#f6cf27",b:"#9e6a00",rgb:"247,190,55",art:"./assets/card-aisi304.svg?v=0.5.0"},
+  {id:"steel",code:"STEEL",title:"Сталь",subtitle:"Конструкционная сталь",short:"СТАЛЬ",a:"#69717a",b:"#171b20",rgb:"130,141,154",art:"./assets/card-steel.svg?v=0.5.0"},
+  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",short:"ПОЛИАМИД",a:"#47a8ff",b:"#0a4ca7",rgb:"76,154,255",art:"./assets/card-polyamide.svg?v=0.5.0"},
+  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",short:"ЛАТУНЬ",a:"#e8b846",b:"#76500d",rgb:"230,165,55",art:"./assets/card-brass.svg?v=0.5.0"}
 ];
 const SEED=[];
 
