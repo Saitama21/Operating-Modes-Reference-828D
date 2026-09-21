@@ -1,4 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-<defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#b17911"/><stop offset=".55" stop-color="#e9b93b"/><stop offset="1" stop-color="#6e470b"/></linearGradient><linearGradient id="r" x1="0" x2="1"><stop stop-color="#6a430c"/><stop offset=".22" stop-color="#f4ce68"/><stop offset=".52" stop-color="#a97016"/><stop offset=".78" stop-color="#ffd96b"/><stop offset="1" stop-color="#71480d"/></linearGradient></defs>
-<rect width="800" height="600" fill="url(#bg)"/><ellipse cx="470" cy="320" rx="220" ry="122" fill="#6f450b" opacity=".45"/><path d="M220 250c0-78 112-141 250-141s250 63 250 141v130c0 78-112 141-250 141s-250-63-250-141z" fill="url(#r)"/><ellipse cx="470" cy="250" rx="250" ry="141" fill="#e7b94b"/><ellipse cx="470" cy="250" rx="85" ry="48" fill="#6f480d"/><path d="M385 250v130c0 27 38 49 85 49s85-22 85-49V250" fill="#a96e12" opacity=".75"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2c64e"/><stop offset=".38" stop-color="#bf8614"/><stop offset=".72" stop-color="#7d4d07"/><stop offset="1" stop-color="#3b2605"/></linearGradient>
+  <linearGradient id="rod" x1="0" x2="1"><stop stop-color="#6a4107"/><stop offset=".14" stop-color="#f6d26a"/><stop offset=".36" stop-color="#b87b13"/><stop offset=".56" stop-color="#ffd96b"/><stop offset=".78" stop-color="#9b6210"/><stop offset="1" stop-color="#5d3908"/></linearGradient>
+  <radialGradient id="face"><stop stop-color="#8b570e"/><stop offset=".38" stop-color="#e8b845"/><stop offset=".75" stop-color="#ba7e18"/><stop offset="1" stop-color="#6a420a"/></radialGradient>
+  <filter id="brush"><feTurbulence type="fractalNoise" baseFrequency=".01 .7" numOctaves="1" seed="6" result="n"/><feColorMatrix in="n" values="1 0 0 0 .05 0 1 0 0 .04 0 0 1 0 .02 0 0 0 .16 0"/><feBlend in="SourceGraphic" mode="overlay"/></filter>
+</defs>
+<rect width="800" height="1000" fill="url(#bg)"/>
+<ellipse cx="535" cy="720" rx="310" ry="110" fill="#2f1c04" opacity=".25"/>
+<g filter="url(#brush)" transform="rotate(-8 480 500)">
+  <path d="M235 390h365v265c0 72-82 130-182 130s-183-58-183-130z" fill="url(#rod)"/>
+  <ellipse cx="418" cy="390" rx="183" ry="98" fill="url(#face)"/>
+  <ellipse cx="418" cy="390" rx="66" ry="34" fill="#6c430b"/>
+  <ellipse cx="418" cy="389" rx="53" ry="25" fill="#4f3007"/>
+</g>
+<path d="M120 230c210-105 414-99 615 17" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="30"/>
 </svg>
