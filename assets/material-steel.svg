@@ -1,19 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#353b42"/><stop offset=".52" stop-color="#1c2228"/><stop offset="1" stop-color="#090d11"/></linearGradient>
-  <linearGradient id="top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7dce0"/><stop offset=".18" stop-color="#818991"/><stop offset=".45" stop-color="#c8cdd1"/><stop offset=".74" stop-color="#626a73"/><stop offset="1" stop-color="#2b3036"/></linearGradient>
-  <linearGradient id="side" x1="0" x2="1"><stop stop-color="#666e77"/><stop offset=".48" stop-color="#2d343b"/><stop offset="1" stop-color="#151a1f"/></linearGradient>
-  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".35" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .22 0"/><feBlend in="SourceGraphic" mode="overlay"/></filter>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3b4249"/><stop offset=".48" stop-color="#20262c"/><stop offset="1" stop-color="#0d1115"/></linearGradient>
+  <linearGradient id="top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf0f2"/><stop offset=".18" stop-color="#a8afb5"/><stop offset=".42" stop-color="#d8dcdf"/><stop offset=".68" stop-color="#7d858d"/><stop offset="1" stop-color="#454c53"/></linearGradient>
+  <linearGradient id="front" x1="0" x2="1"><stop stop-color="#5d656d"/><stop offset=".44" stop-color="#343b42"/><stop offset="1" stop-color="#181d22"/></linearGradient>
+  <linearGradient id="side" x1="0" x2="1"><stop stop-color="#3f474f"/><stop offset=".52" stop-color="#272d33"/><stop offset="1" stop-color="#11161a"/></linearGradient>
+  <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="18"/><feOffset dy="22"/><feComponentTransfer><feFuncA type="linear" slope=".34"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
 <rect width="800" height="1000" fill="url(#bg)"/>
-<ellipse cx="560" cy="715" rx="310" ry="120" fill="#000" opacity=".28"/>
-<g filter="url(#grain)">
-  <path d="M170 240 545 170 690 315 318 395z" fill="url(#top)"/>
-  <path d="M170 240 318 395v320L170 566z" fill="#3b434b"/>
-  <path d="M318 395 690 315v320L318 715z" fill="url(#side)"/>
+<ellipse cx="500" cy="745" rx="300" ry="100" fill="#000" opacity=".26"/>
+<g filter="url(#softShadow)">
+  <path d="M175 265 515 205 665 330 322 402z" fill="url(#top)"/>
+  <path d="M175 265 322 402v320L175 575z" fill="url(#front)"/>
+  <path d="M322 402 665 330v318L322 722z" fill="url(#side)"/>
+  <path d="M186 278 510 220 646 334" fill="none" stroke="#fff" stroke-opacity=".20" stroke-width="4"/>
+  <path d="M344 428 640 365" stroke="#fff" stroke-opacity=".035" stroke-width="2"/>
+  <path d="M343 471 640 408" stroke="#fff" stroke-opacity=".035" stroke-width="2"/>
+  <path d="M343 514 640 451" stroke="#fff" stroke-opacity=".035" stroke-width="2"/>
 </g>
-<g stroke="#fff" stroke-opacity=".075" stroke-width="2">
-  <path d="M205 280 651 344"/><path d="M192 326 650 394"/><path d="M222 455 641 505"/><path d="M235 520 638 570"/>
-</g>
-<path d="M176 242 543 174" stroke="#fff" stroke-opacity=".25" stroke-width="6"/>
 </svg>
