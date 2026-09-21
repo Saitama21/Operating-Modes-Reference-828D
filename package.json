@@ -1,0 +1,9 @@
+{
+  "name": "operating-modes-reference-828d",
+  "version": "0.3.7",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:ui",
+    "test:ui": "node tests/ui-contract.mjs"
+  }
+}
