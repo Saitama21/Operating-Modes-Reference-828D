@@ -826,3 +826,147 @@ button{color:inherit;touch-action:manipulation}
   .app-shell[data-view="home"] .experience-card{flex-basis:126px;min-height:126px}
   .app-shell[data-view="home"] .experience-copy{font-size:16px}
 }
+
+
+/* CONCEPT FIDELITY v0.4.1 — tighter one-screen composition */
+@media(max-width:699px){
+  .app-shell[data-view="home"] .topbar{
+    min-height:calc(154px + var(--safe-top));
+    padding:
+      calc(var(--safe-top) + 19px)
+      20px
+      18px;
+  }
+
+  .app-shell[data-view="home"] .topbar .eyebrow{
+    margin-bottom:20px;
+    font-size:8.5px;
+  }
+
+  .app-shell[data-view="home"] .topbar h1{
+    font-size:46px;
+    line-height:.86;
+  }
+
+  .app-shell[data-view="home"] .top-subtitle{
+    margin-top:12px;
+    font-size:28px;
+  }
+
+  .app-shell[data-view="home"] .top-actions{
+    min-width:126px;
+    min-height:112px;
+  }
+
+  .app-shell[data-view="home"] .top-proof{
+    width:126px;
+    font-size:6.7px;
+  }
+
+  .app-shell[data-view="home"] .hero-add{
+    width:58px;
+    height:58px;
+    margin-top:58px;
+    font-size:37px;
+  }
+
+  .app-shell[data-view="home"] .viewport{
+    padding:16px 17px 18px;
+  }
+
+  .app-shell[data-view="home"] .home-screen{
+    gap:13px;
+  }
+
+  .app-shell[data-view="home"] .material-grid.material-deck{
+    gap:11px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .material-card{
+    aspect-ratio:.88;
+    border-radius:22px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-main{
+    left:15px;
+    bottom:45px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-title{
+    font-size:22px;
+  }
+
+  .app-shell[data-view="home"] .material-grid .card-bottom{
+    left:15px;
+    right:12px;
+    bottom:12px;
+  }
+
+  .app-shell[data-view="home"] .experience-card{
+    flex:0 0 118px;
+    min-height:118px;
+    border-radius:22px;
+    padding:16px 18px;
+  }
+
+  .app-shell[data-view="home"] .quote-mark{
+    top:6px;
+    left:18px;
+    font-size:44px;
+  }
+
+  .app-shell[data-view="home"] .experience-copy{
+    margin-top:27px;
+    max-width:62%;
+    font-size:16px;
+    line-height:1.22;
+  }
+
+  .app-shell[data-view="home"] .experience-foot{
+    left:18px;
+    bottom:12px;
+    font-size:7px;
+  }
+
+  .app-shell[data-view="home"] .chip-art{
+    right:-20px;
+    bottom:-10px;
+    width:176px;
+    height:108px;
+    opacity:.77;
+  }
+}
+
+@media(max-width:389px){
+  .app-shell[data-view="home"] .topbar{
+    min-height:calc(146px + var(--safe-top));
+  }
+  .app-shell[data-view="home"] .topbar h1{font-size:41px}
+  .app-shell[data-view="home"] .top-subtitle{font-size:25px}
+  .app-shell[data-view="home"] .hero-add{
+    width:53px;height:53px;margin-top:56px;font-size:34px
+  }
+  .app-shell[data-view="home"] .material-grid .material-card{aspect-ratio:.90}
+  .app-shell[data-view="home"] .experience-card{
+    flex-basis:108px;
+    min-height:108px;
+  }
+  .app-shell[data-view="home"] .experience-copy{font-size:15px}
+}
+
+@media(max-height:820px) and (max-width:699px){
+  .app-shell[data-view="home"] .topbar{
+    min-height:calc(138px + var(--safe-top));
+    padding-top:calc(var(--safe-top) + 14px);
+    padding-bottom:14px;
+  }
+  .app-shell[data-view="home"] .topbar .eyebrow{margin-bottom:15px}
+  .app-shell[data-view="home"] .topbar h1{font-size:42px}
+  .app-shell[data-view="home"] .top-subtitle{font-size:25px;margin-top:9px}
+  .app-shell[data-view="home"] .hero-add{width:52px;height:52px;margin-top:50px}
+  .app-shell[data-view="home"] .viewport{padding-top:12px}
+  .app-shell[data-view="home"] .material-grid .material-card{aspect-ratio:.94}
+  .app-shell[data-view="home"] .experience-card{flex-basis:100px;min-height:100px}
+  .app-shell[data-view="home"] .experience-copy{font-size:14px;margin-top:22px}
+  .app-shell[data-view="home"] .experience-foot{font-size:6.5px;bottom:9px}
+}
