@@ -1,4 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
-<defs><linearGradient id="bg" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#0b55c5"/><stop offset="1" stop-color="#67c7ff"/></linearGradient><linearGradient id="p" x1="0" x2="1"><stop stop-color="#edf7ff"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#b9d2e3"/></linearGradient></defs>
-<rect width="800" height="600" fill="url(#bg)"/><path d="M245 120l280-40 100 100-280 45z" fill="#f8fdff"/><path d="M245 120l100 105v255L245 360z" fill="#c7ddeb"/><path d="M345 225l280-45v255l-280 45z" fill="url(#p)"/><rect x="0" y="0" width="800" height="600" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="12"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+<defs>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#69cbff"/><stop offset=".38" stop-color="#1994ee"/><stop offset=".76" stop-color="#0850aa"/><stop offset="1" stop-color="#042f70"/></linearGradient>
+  <linearGradient id="front" x1="0" x2="1"><stop stop-color="#d9edf8"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#c3d9e7"/></linearGradient>
+  <linearGradient id="side" x1="0" x2="1"><stop stop-color="#a9c8db"/><stop offset=".6" stop-color="#e7f5fc"/><stop offset="1" stop-color="#a9c2d2"/></linearGradient>
+  <radialGradient id="glow" cx=".25" cy=".18" r=".8"><stop stop-color="#fff" stop-opacity=".26"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <filter id="soft"><feTurbulence type="fractalNoise" baseFrequency=".14" numOctaves="1" seed="11" result="n"/><feColorMatrix in="n" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 .10 0"/><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+</defs>
+<rect width="800" height="1000" fill="url(#blue)"/>
+<rect width="800" height="1000" fill="url(#glow)"/>
+<ellipse cx="430" cy="720" rx="250" ry="90" fill="#002c68" opacity=".32"/>
+<g filter="url(#soft)">
+  <path d="M205 280 500 220 620 326 322 390z" fill="#f8fdff"/>
+  <path d="M205 280 322 390v330L205 596z" fill="#bed7e6"/>
+  <path d="M322 390 620 326v332L322 720z" fill="url(#front)"/>
+  <path d="M322 390 620 326" stroke="#fff" stroke-opacity=".68" stroke-width="4"/>
+  <path d="M322 390v330" stroke="#fff" stroke-opacity=".24" stroke-width="3"/>
+</g>
+<rect width="800" height="1000" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="8"/>
 </svg>
