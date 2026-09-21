@@ -1,17 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2c64e"/><stop offset=".38" stop-color="#bf8614"/><stop offset=".72" stop-color="#7d4d07"/><stop offset="1" stop-color="#3b2605"/></linearGradient>
-  <linearGradient id="rod" x1="0" x2="1"><stop stop-color="#6a4107"/><stop offset=".14" stop-color="#f6d26a"/><stop offset=".36" stop-color="#b87b13"/><stop offset=".56" stop-color="#ffd96b"/><stop offset=".78" stop-color="#9b6210"/><stop offset="1" stop-color="#5d3908"/></linearGradient>
-  <radialGradient id="face"><stop stop-color="#8b570e"/><stop offset=".38" stop-color="#e8b845"/><stop offset=".75" stop-color="#ba7e18"/><stop offset="1" stop-color="#6a420a"/></radialGradient>
-  <filter id="brush"><feTurbulence type="fractalNoise" baseFrequency=".01 .7" numOctaves="1" seed="6" result="n"/><feColorMatrix in="n" values="1 0 0 0 .05 0 1 0 0 .04 0 0 1 0 .02 0 0 0 .16 0"/><feBlend in="SourceGraphic" mode="overlay"/></filter>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#efc447"/><stop offset=".34" stop-color="#c58d18"/><stop offset=".72" stop-color="#7b4b09"/><stop offset="1" stop-color="#332105"/></linearGradient>
+  <linearGradient id="rod" x1="0" x2="1"><stop stop-color="#76500d"/><stop offset=".14" stop-color="#f5d06a"/><stop offset=".34" stop-color="#a96e12"/><stop offset=".54" stop-color="#ffd66a"/><stop offset=".74" stop-color="#a4670e"/><stop offset="1" stop-color="#5b3706"/></linearGradient>
+  <radialGradient id="face" cx=".38" cy=".3" r=".85"><stop stop-color="#ffe489"/><stop offset=".28" stop-color="#d8a238"/><stop offset=".68" stop-color="#a46a11"/><stop offset="1" stop-color="#694108"/></radialGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="18"/><feOffset dy="22"/><feComponentTransfer><feFuncA type="linear" slope=".30"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
 <rect width="800" height="1000" fill="url(#bg)"/>
-<ellipse cx="535" cy="720" rx="310" ry="110" fill="#2f1c04" opacity=".25"/>
-<g filter="url(#brush)" transform="rotate(-8 480 500)">
-  <path d="M235 390h365v265c0 72-82 130-182 130s-183-58-183-130z" fill="url(#rod)"/>
-  <ellipse cx="418" cy="390" rx="183" ry="98" fill="url(#face)"/>
-  <ellipse cx="418" cy="390" rx="66" ry="34" fill="#6c430b"/>
-  <ellipse cx="418" cy="389" rx="53" ry="25" fill="#4f3007"/>
+<path d="M0 205c215-80 433-68 690 35" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="34"/>
+<ellipse cx="480" cy="745" rx="300" ry="95" fill="#2d1b03" opacity=".24"/>
+<g transform="rotate(-13 455 505)" filter="url(#shadow)">
+  <rect x="210" y="360" width="390" height="250" rx="118" fill="url(#rod)"/>
+  <ellipse cx="600" cy="485" rx="118" ry="125" fill="url(#face)"/>
+  <ellipse cx="598" cy="483" rx="37" ry="42" fill="#6a430b"/>
+  <ellipse cx="598" cy="481" rx="27" ry="31" fill="#4b2e06"/>
+  <path d="M240 394h315" stroke="#fff" stroke-opacity=".13" stroke-width="4"/>
+  <path d="M236 435h327" stroke="#fff" stroke-opacity=".07" stroke-width="3"/>
+  <path d="M236 528h327" stroke="#000" stroke-opacity=".07" stroke-width="3"/>
 </g>
-<path d="M120 230c210-105 414-99 615 17" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="30"/>
 </svg>
