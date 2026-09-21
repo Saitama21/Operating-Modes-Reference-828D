@@ -1,0 +1,19 @@
+{
+  "name": "Operating Modes Reference 828D",
+  "short_name": "828D Modes",
+  "description": "Личная офлайн-база проверенных режимов обработки для SINUMERIK 828D.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090b0f",
+  "theme_color": "#090b0f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
