@@ -25,7 +25,7 @@ function resolveTheme(mode){
   return mode==="system"?(themeMedia.matches?"light":"dark"):mode;
 }
 function syncThemeControls(mode){
-  $("[data-theme-choice]").forEach(btn=>{
+  $$("[data-theme-choice]").forEach(btn=>{
     const active=btn.dataset.themeChoice===mode;
     btn.classList.toggle("is-active",active);
     btn.setAttribute("aria-pressed",active?"true":"false");
@@ -287,7 +287,7 @@ async function importData(file){
   alert("Импорт завершён");
 }
 function bind(){
-  $("[data-theme-choice]").forEach(btn=>{
+  $$("[data-theme-choice]").forEach(btn=>{
     btn.onclick=()=>applyTheme(btn.dataset.themeChoice,{persist:true});
   });
   $("#backBtn").onclick=()=>{renderDeck();setView("home");};
