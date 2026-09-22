@@ -1,8 +1,8 @@
 const MATERIALS=[
-  {id:"aisi304",code:"AISI 304",title:"AISI 304",subtitle:"Нержавеющая сталь",short:"НЕРЖАВЕЙКА",a:"#f6cf27",b:"#9e6a00",rgb:"247,190,55",art:"./assets/card-aisi304.webp?v=0.7.0"},
-  {id:"steel",code:"STEEL",title:"Сталь",subtitle:"Конструкционная сталь",short:"СТАЛЬ",a:"#69717a",b:"#171b20",rgb:"130,141,154",art:"./assets/card-steel.webp?v=0.7.0"},
-  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",short:"ПОЛИАМИД",a:"#47a8ff",b:"#0a4ca7",rgb:"76,154,255",art:"./assets/card-polyamide.webp?v=0.7.2"},
-  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",short:"ЛАТУНЬ",a:"#e8b846",b:"#76500d",rgb:"230,165,55",art:"./assets/card-brass.webp?v=0.7.0"}
+  {id:"aisi304",code:"AISI 304",title:"AISI 304",subtitle:"Нержавеющая сталь",short:"НЕРЖАВЕЙКА",a:"#f6cf27",b:"#9e6a00",rgb:"247,190,55",art:"./assets/card-aisi304.webp?v=0.7.3"},
+  {id:"steel",code:"STEEL",title:"Сталь",subtitle:"Конструкционная сталь",short:"СТАЛЬ",a:"#69717a",b:"#171b20",rgb:"130,141,154",art:"./assets/card-steel.webp?v=0.7.3"},
+  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",short:"ПОЛИАМИД",a:"#47a8ff",b:"#0a4ca7",rgb:"76,154,255",art:"./assets/card-polyamide.webp?v=0.7.3"},
+  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",short:"ЛАТУНЬ",a:"#e8b846",b:"#76500d",rgb:"230,165,55",art:"./assets/card-brass.webp?v=0.7.3"}
 ];
 const SEED=[];
 
@@ -113,6 +113,12 @@ function renderDeck(){
       '<div class="card-shade"></div>'+
       '<div class="card-main"><div class="card-title">'+m.title+'</div><div class="card-subtitle">'+m.subtitle+'</div></div>'+
       '<div class="card-bottom"><span class="card-count">'+(count===1?"1 запись":count+" записей")+'</span><span class="card-open">›</span></div>';
+    const art=c.querySelector(".material-art");
+    art.addEventListener("error",()=>{
+      if(art.dataset.materialArtFallback)return;
+      art.dataset.materialArtFallback="1";
+      art.src="./assets/material-"+m.id+".svg?v=0.7.3";
+    });
     c.addEventListener("pointerdown",()=>c.classList.add("is-pressed"));
     ["pointerup","pointercancel","pointerleave"].forEach(ev=>c.addEventListener(ev,()=>c.classList.remove("is-pressed")));
     c.addEventListener("click",()=>{
