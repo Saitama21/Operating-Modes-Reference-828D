@@ -1957,3 +1957,154 @@ html[data-theme="light"] .app-shell[data-view="home"] .dock-item.is-active{
 @media(prefers-reduced-motion:reduce){
   .dock::before{animation:none!important}
 }
+
+
+/* DOCK + CARD HOTFIX v0.7.3
+   Exact Beta-test geometry, independent from Safari/app geometry.
+   Safe-area only reserves content. Moving scanner glare removed. */
+@media(max-width:699px){
+  :root{
+    --dock-bottom:2px;
+    --dock-width:87%;
+    --dock-height:68px;
+  }
+
+  .app-shell,
+  .app-shell[data-view="home"]{
+    min-height:100dvh;
+    padding-bottom:calc(92px + var(--safe-bottom))!important;
+  }
+
+  .dock,
+  .app-shell[data-view="home"] .dock{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:2px;
+    width:87%;
+    height:68px;
+    margin:0;
+    padding:6px 7px;
+    overflow:hidden;
+    border:1px solid rgba(146,213,255,.24);
+    border-radius:26px;
+    background:
+      radial-gradient(120% 180% at 14% -45%,rgba(183,231,255,.16),transparent 48%),
+      linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.018)),
+      rgba(17,29,42,.86);
+    box-shadow:
+      0 14px 38px rgba(0,0,0,.34),
+      inset 0 1px 0 rgba(255,255,255,.15),
+      inset 0 -1px 0 rgba(105,181,233,.06);
+    backdrop-filter:blur(28px) saturate(150%);
+    -webkit-backdrop-filter:blur(28px) saturate(150%);
+  }
+
+  .dock::before,
+  .app-shell[data-view="home"] .dock::before{
+    content:"";
+    position:absolute;
+    inset:-34% -22%;
+    width:auto;
+    height:auto;
+    border-radius:inherit;
+    background:
+      radial-gradient(ellipse at 24% 28%,rgba(204,239,255,.13),transparent 31%),
+      radial-gradient(ellipse at 76% 72%,rgba(73,166,228,.07),transparent 38%);
+    filter:blur(18px);
+    opacity:.72;
+    transform:none;
+    mix-blend-mode:screen;
+    animation:none!important;
+    pointer-events:none;
+  }
+
+  .dock::after,
+  .app-shell[data-view="home"] .dock::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    border:1px solid rgba(214,240,255,.07);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.10),
+      inset 0 -1px 0 rgba(104,186,240,.04);
+    pointer-events:none;
+  }
+
+  .dock-item,
+  .app-shell[data-view="home"] .dock-item{
+    border-radius:20px;
+    color:#a9b7c6;
+    background:transparent;
+    box-shadow:none;
+  }
+
+  .dock-item.is-active,
+  .app-shell[data-view="home"] .dock-item.is-active{
+    color:#d8f3ff;
+    border-color:rgba(118,207,255,.55);
+    background:linear-gradient(180deg,rgba(112,199,255,.12),rgba(48,135,199,.055));
+    box-shadow:
+      inset 0 1px 0 rgba(238,249,255,.22),
+      inset 0 -1px 0 rgba(65,164,229,.08),
+      0 0 16px rgba(65,177,246,.12);
+  }
+
+  .dock-item.is-active::before,
+  .app-shell[data-view="home"] .dock-item.is-active::before{
+    content:"";
+    position:absolute;
+    inset:6px 13px;
+    border-radius:16px;
+    background:radial-gradient(ellipse at 50% 25%,rgba(159,225,255,.11),transparent 68%);
+    filter:blur(7px);
+    opacity:.62;
+    animation:dockActiveGlow 5.8s ease-in-out infinite;
+    pointer-events:none;
+  }
+
+  @keyframes dockActiveGlow{
+    0%,100%{opacity:.42;transform:scale(.98)}
+    50%{opacity:.72;transform:scale(1.015)}
+  }
+
+  .dock-item.is-active .dock-icon,
+  .app-shell[data-view="home"] .dock-item.is-active .dock-icon{
+    color:#8edcff;
+    filter:drop-shadow(0 0 6px rgba(66,184,255,.30));
+  }
+
+  .dock-item.is-active small,
+  .app-shell[data-view="home"] .dock-item.is-active small{
+    color:#d7f3ff;
+    text-shadow:none;
+  }
+
+  html[data-theme="light"] .dock,
+  html[data-theme="light"] .app-shell[data-view="home"] .dock{
+    border-color:rgba(121,190,235,.28);
+    background:
+      radial-gradient(120% 180% at 14% -45%,rgba(255,255,255,.90),transparent 50%),
+      linear-gradient(180deg,rgba(255,255,255,.72),rgba(224,240,251,.54)),
+      rgba(239,248,255,.72);
+    box-shadow:
+      0 14px 34px rgba(62,99,135,.15),
+      inset 0 1px 0 rgba(255,255,255,.98),
+      inset 0 -1px 0 rgba(90,163,214,.08);
+  }
+
+  html[data-theme="light"] .dock-item.is-active,
+  html[data-theme="light"] .app-shell[data-view="home"] .dock-item.is-active{
+    color:#135f9f;
+    border-color:rgba(78,177,239,.50);
+    background:linear-gradient(180deg,rgba(179,226,255,.40),rgba(104,191,246,.12));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.92),
+      0 0 14px rgba(72,180,250,.10);
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .dock-item.is-active::before{animation:none!important}
+}
