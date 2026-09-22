@@ -1,4 +1,4 @@
-const CACHE="828d-modes-v0.5.0";
+const CACHE="828d-modes-v0.5.1";
 const CORE=[
   "./","./index.html","./styles.css","./app.js","./manifest.webmanifest",
   "./assets/icon.svg","./assets/flange.svg","./assets/bushing.svg",
