@@ -11,7 +11,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/icon.svg">
-  <link rel="stylesheet" href="./styles.css?v=0.5.0">
+  <link rel="stylesheet" href="./styles.css?v=0.5.1">
 </head>
 <body>
   <div id="app" class="app-shell" data-view="home">
@@ -108,9 +108,32 @@
     </main>
 
     <nav class="dock" aria-label="Навигация">
-      <button class="dock-item is-active" data-nav="home"><span>⌂</span><small>Главная</small></button>
-      <button class="dock-item add" id="addBtn"><span>＋</span><small>Добавить</small></button>
-      <button class="dock-item" data-nav="search"><span>⌕</span><small>Поиск</small></button>
+      <button class="dock-item is-active" data-nav="home" aria-label="Главная">
+        <span class="dock-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.5 10.5 12 4l7.5 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-4.2v-5.3h-3.6V20H6a1.5 1.5 0 0 1-1.5-1.5z"/>
+          </svg>
+        </span>
+        <small>Главная</small>
+      </button>
+      <button class="dock-item add" id="addBtn" aria-label="Добавить">
+        <span class="dock-icon dock-add-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.2"/>
+            <path d="M12 8v8M8 12h8"/>
+          </svg>
+        </span>
+        <small>Добавить</small>
+      </button>
+      <button class="dock-item" data-nav="search" aria-label="Поиск">
+        <span class="dock-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="5.8"/>
+            <path d="m15 15 4.5 4.5"/>
+          </svg>
+        </span>
+        <small>Поиск</small>
+      </button>
     </nav>
   </div>
 
@@ -170,6 +193,6 @@
     </div>
   </dialog>
 
-  <script src="./app.js?v=0.5.0" defer></script>
+  <script src="./app.js?v=0.5.1" defer></script>
 </body>
 </html>
