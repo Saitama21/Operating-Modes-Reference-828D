@@ -1,9 +1,9 @@
-const CACHE="828d-modes-v0.5.1";
+const CACHE="828d-modes-v0.6.0";
 const CORE=[
   "./","./index.html","./styles.css","./app.js","./manifest.webmanifest",
   "./assets/icon.svg","./assets/flange.svg","./assets/bushing.svg",
   "./assets/material-aisi304.svg","./assets/material-steel.svg",
-  "./assets/material-polyamide.svg","./assets/material-brass.svg","./assets/card-aisi304.svg","./assets/card-steel.svg","./assets/card-polyamide.svg","./assets/card-brass.svg","./assets/chips.svg"
+  "./assets/material-polyamide.svg","./assets/material-brass.svg","./assets/card-aisi304.webp","./assets/card-steel.webp","./assets/card-polyamide.webp","./assets/card-brass.webp","./assets/chips.svg"
 ];
 
 self.addEventListener("install",event=>{
