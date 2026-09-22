@@ -1,9 +1,20 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="dark" data-theme-mode="system">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-  <meta name="theme-color" content="#090b0f">
+  <meta name="theme-color" id="themeColorMeta" content="#071018">
+  <script>
+    (() => {
+      try {
+        const mode = localStorage.getItem("omr-theme") || "system";
+        const light = window.matchMedia("(prefers-color-scheme: light)").matches;
+        const resolved = mode === "system" ? (light ? "light" : "dark") : mode;
+        document.documentElement.dataset.theme = resolved;
+        document.documentElement.dataset.themeMode = mode;
+      } catch {}
+    })();
+  </script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="828D Modes">
@@ -11,7 +22,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/icon.svg">
-  <link rel="stylesheet" href="./styles.css?v=0.6.0">
+  <link rel="stylesheet" href="./styles.css?v=0.7.0">
 </head>
 <body>
   <div id="app" class="app-shell" data-view="home">
@@ -187,12 +198,23 @@
       <button class="icon-btn" id="menuClose">×</button>
     </div>
     <p class="sheet-copy">Все записи и фотографии хранятся только на этом устройстве. Синхронизации и аккаунтов нет.</p>
+    <div class="theme-panel">
+      <div class="theme-panel-head">
+        <span>ТЕМА ИНТЕРФЕЙСА</span>
+        <small>Авто следует системной теме устройства</small>
+      </div>
+      <div class="theme-switch" role="group" aria-label="Тема интерфейса">
+        <button type="button" class="theme-option" data-theme-choice="system" aria-pressed="false">Авто</button>
+        <button type="button" class="theme-option" data-theme-choice="dark" aria-pressed="false">Тёмная</button>
+        <button type="button" class="theme-option" data-theme-choice="light" aria-pressed="false">Светлая</button>
+      </div>
+    </div>
     <div class="menu-actions">
       <button class="secondary-btn" id="exportBtn">Экспорт JSON</button>
       <label class="secondary-btn file-btn">Импорт JSON<input id="importInput" type="file" accept="application/json"></label>
     </div>
   </dialog>
 
-  <script src="./app.js?v=0.6.0" defer></script>
+  <script src="./app.js?v=0.7.0" defer></script>
 </body>
 </html>

@@ -1,14 +1,56 @@
 const MATERIALS=[
-  {id:"aisi304",code:"AISI 304",title:"AISI 304",subtitle:"Нержавеющая сталь",short:"НЕРЖАВЕЙКА",a:"#f6cf27",b:"#9e6a00",rgb:"247,190,55",art:"./assets/card-aisi304.webp?v=0.6.0"},
-  {id:"steel",code:"STEEL",title:"Сталь",subtitle:"Конструкционная сталь",short:"СТАЛЬ",a:"#69717a",b:"#171b20",rgb:"130,141,154",art:"./assets/card-steel.webp?v=0.6.0"},
-  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",short:"ПОЛИАМИД",a:"#47a8ff",b:"#0a4ca7",rgb:"76,154,255",art:"./assets/card-polyamide.webp?v=0.6.0"},
-  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",short:"ЛАТУНЬ",a:"#e8b846",b:"#76500d",rgb:"230,165,55",art:"./assets/card-brass.webp?v=0.6.0"}
+  {id:"aisi304",code:"AISI 304",title:"AISI 304",subtitle:"Нержавеющая сталь",short:"НЕРЖАВЕЙКА",a:"#f6cf27",b:"#9e6a00",rgb:"247,190,55",art:"./assets/card-aisi304.webp?v=0.7.0"},
+  {id:"steel",code:"STEEL",title:"Сталь",subtitle:"Конструкционная сталь",short:"СТАЛЬ",a:"#69717a",b:"#171b20",rgb:"130,141,154",art:"./assets/card-steel.webp?v=0.7.0"},
+  {id:"polyamide",code:"PA6",title:"Полиамид",subtitle:"Технический пластик",short:"ПОЛИАМИД",a:"#47a8ff",b:"#0a4ca7",rgb:"76,154,255",art:"./assets/card-polyamide.webp?v=0.7.0"},
+  {id:"brass",code:"CuZn37",title:"Латунь",subtitle:"Цветной сплав",short:"ЛАТУНЬ",a:"#e8b846",b:"#76500d",rgb:"230,165,55",art:"./assets/card-brass.webp?v=0.7.0"}
 ];
 const SEED=[];
 
 const $=s=>document.querySelector(s);
 const $$=s=>Array.from(document.querySelectorAll(s));
 const state={view:"home",materialIndex:0,recordIndex:0,records:[],editingId:null};
+
+const THEME_KEY="omr-theme";
+const themeMedia=window.matchMedia("(prefers-color-scheme: light)");
+
+function readThemeMode(){
+  try{
+    const saved=localStorage.getItem(THEME_KEY);
+    return ["system","dark","light"].includes(saved)?saved:"system";
+  }catch{
+    return "system";
+  }
+}
+function resolveTheme(mode){
+  return mode==="system"?(themeMedia.matches?"light":"dark"):mode;
+}
+function syncThemeControls(mode){
+  $("[data-theme-choice]").forEach(btn=>{
+    const active=btn.dataset.themeChoice===mode;
+    btn.classList.toggle("is-active",active);
+    btn.setAttribute("aria-pressed",active?"true":"false");
+  });
+}
+function applyTheme(mode,{persist=false}={}){
+  const safeMode=["system","dark","light"].includes(mode)?mode:"system";
+  const resolved=resolveTheme(safeMode);
+  document.documentElement.dataset.theme=resolved;
+  document.documentElement.dataset.themeMode=safeMode;
+  if(persist){
+    try{localStorage.setItem(THEME_KEY,safeMode)}catch{}
+  }
+  const meta=$("#themeColorMeta")||document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute("content",resolved==="light"?"#eef5fc":"#071018");
+  syncThemeControls(safeMode);
+}
+function initTheme(){
+  applyTheme(readThemeMode());
+  const onSystemChange=()=>{
+    if(readThemeMode()==="system")applyTheme("system");
+  };
+  if(themeMedia.addEventListener)themeMedia.addEventListener("change",onSystemChange);
+  else if(themeMedia.addListener)themeMedia.addListener(onSystemChange);
+}
 
 const dbp=new Promise((resolve,reject)=>{
   const req=indexedDB.open("operating-modes-828d",1);
@@ -245,6 +287,9 @@ async function importData(file){
   alert("Импорт завершён");
 }
 function bind(){
+  $("[data-theme-choice]").forEach(btn=>{
+    btn.onclick=()=>applyTheme(btn.dataset.themeChoice,{persist:true});
+  });
   $("#backBtn").onclick=()=>{renderDeck();setView("home");};
   $("#recordPrev").onclick=()=>moveRecord(-1);
   $("#recordNext").onclick=()=>moveRecord(1);
@@ -281,6 +326,7 @@ function bind(){
   });
 }
 async function start(){
+  initTheme();
   window.scrollTo(0,0);
   fillMaterialSelect();
   await initData();
