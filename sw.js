@@ -1,4 +1,4 @@
-const CACHE="828d-modes-v0.7.2";
+const CACHE="828d-modes-v0.7.3";
 const CORE=[
   "./","./index.html","./styles.css","./app.js","./manifest.webmanifest",
   "./assets/icon.svg","./assets/flange.svg","./assets/bushing.svg",
@@ -28,6 +28,22 @@ self.addEventListener("fetch",event=>{
   const isShell=
     event.request.mode==="navigate" ||
     /\.(?:html|css|js|webmanifest)$/.test(url.pathname);
+
+  const isCardArt=/\/assets\/card-[^/]+\.webp$/.test(url.pathname);
+
+  if(isCardArt){
+    event.respondWith(
+      fetch(event.request,{cache:"no-store"})
+        .then(response=>{
+          if(!response.ok)throw new Error("card-art "+response.status);
+          const copy=response.clone();
+          caches.open(CACHE).then(cache=>cache.put(event.request,copy));
+          return response;
+        })
+        .catch(()=>caches.match(event.request).then(hit=>hit||caches.match(url.pathname)))
+    );
+    return;
+  }
 
   if(isShell){
     event.respondWith(
