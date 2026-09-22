@@ -1858,3 +1858,102 @@ html[data-theme="light"] .primary-btn{
 @media(prefers-reduced-motion:reduce){
   .dock::before{animation:none}
 }
+
+
+/* POLISH FIXES v0.7.2 */
+.app-shell[data-view="home"] .material-card[data-material="polyamide"] .material-art{
+  opacity:1;
+  object-fit:cover;
+  object-position:center 42%;
+  filter:none;
+  transform:none;
+}
+.app-shell[data-view="home"] .material-card[data-material="polyamide"] .card-shade{
+  background:linear-gradient(180deg,
+    rgba(0,0,0,0) 0 45%,
+    rgba(0,22,52,.05) 58%,
+    rgba(0,22,52,.26) 77%,
+    rgba(0,18,42,.64) 100%);
+}
+
+/* No scanner stripe: slow broad liquid caustic. */
+.dock::before{
+  top:-35%;
+  left:-20%;
+  width:78%;
+  height:180%;
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,
+    rgba(220,245,255,.15) 0%,
+    rgba(150,214,255,.10) 30%,
+    rgba(82,170,235,.055) 48%,
+    rgba(82,170,235,0) 74%);
+  filter:blur(28px);
+  transform:none;
+  opacity:.48;
+  mix-blend-mode:screen;
+  will-change:transform,opacity;
+  animation:dockLiquidCaustic 9.6s ease-in-out infinite alternate;
+}
+@keyframes dockLiquidCaustic{
+  0%{transform:translate3d(-5%,1%,0) scale(1);opacity:.34}
+  50%{transform:translate3d(10%,-2%,0) scale(1.06);opacity:.56}
+  100%{transform:translate3d(22%,1%,0) scale(1.02);opacity:.40}
+}
+.dock::after{
+  border-color:rgba(194,231,255,.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(103,184,242,.045),
+    inset 0 0 20px rgba(122,202,255,.022);
+}
+
+/* Explicitly override the old gold home-state. */
+.app-shell[data-view="home"] .dock-item.is-active{
+  color:#d7f3ff;
+  border-color:rgba(126,211,255,.72);
+  background:
+    radial-gradient(circle at 50% 18%,rgba(205,241,255,.14),transparent 54%),
+    linear-gradient(180deg,rgba(92,188,255,.12),rgba(45,132,199,.065));
+  box-shadow:
+    0 0 0 1px rgba(166,228,255,.06),
+    0 8px 22px rgba(63,174,247,.14),
+    inset 0 1px 0 rgba(237,249,255,.24),
+    inset 0 -8px 20px rgba(22,117,184,.05);
+}
+.app-shell[data-view="home"] .dock-item.is-active .dock-icon{
+  color:#88dcff;
+  filter:drop-shadow(0 0 8px rgba(66,184,255,.42));
+}
+.app-shell[data-view="home"] .dock-item.is-active small{
+  color:#d7f3ff;
+  text-shadow:0 0 10px rgba(66,184,255,.18);
+}
+.app-shell[data-view="home"] .dock-item.is-active::before{
+  inset:9px 18px;
+  background:radial-gradient(circle at 50% 34%,rgba(124,212,255,.10),transparent 68%);
+  filter:blur(11px);
+}
+html[data-theme="light"] .dock::before{
+  background:radial-gradient(ellipse at center,
+    rgba(255,255,255,.62) 0%,
+    rgba(175,225,255,.20) 34%,
+    rgba(111,194,250,.08) 52%,
+    rgba(111,194,250,0) 74%);
+  opacity:.56;
+}
+html[data-theme="light"] .app-shell[data-view="home"] .dock-item.is-active{
+  color:#155f9f;
+  border-color:rgba(99,194,255,.76);
+  background:
+    radial-gradient(circle at 50% 16%,rgba(255,255,255,.80),transparent 52%),
+    linear-gradient(180deg,rgba(174,225,255,.34),rgba(109,196,252,.12));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.72),
+    0 8px 20px rgba(72,180,250,.14),
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 -10px 24px rgba(75,174,239,.05);
+}
+@media(prefers-reduced-motion:reduce){
+  .dock::before{animation:none!important}
+}
