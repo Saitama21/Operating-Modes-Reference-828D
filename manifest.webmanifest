@@ -5,8 +5,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#090b0f",
-  "theme_color": "#090b0f",
+  "background_color": "#071018",
+  "theme_color": "#071018",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -15,5 +15,9 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
+  ],
+  "id": "./",
+  "display_override": [
+    "standalone"
   ]
 }
