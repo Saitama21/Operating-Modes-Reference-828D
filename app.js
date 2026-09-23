@@ -25,11 +25,20 @@ function resolveTheme(mode){
   return mode==="system"?(themeMedia.matches?"light":"dark"):mode;
 }
 function syncThemeControls(mode){
-  $$("[data-theme-choice]").forEach(btn=>{
+  $("[data-theme-choice]").forEach(btn=>{
     const active=btn.dataset.themeChoice===mode;
     btn.classList.toggle("is-active",active);
     btn.setAttribute("aria-pressed",active?"true":"false");
   });
+}
+function syncQuickThemeButton(resolved){
+  const btn=$("#themeQuickBtn");
+  if(!btn)return;
+  const light=resolved==="light";
+  btn.textContent=light?"☾":"☀︎";
+  btn.setAttribute("aria-label",light?"Включить тёмную тему":"Включить светлую тему");
+  btn.setAttribute("title",light?"Тёмная тема":"Светлая тема");
+  btn.dataset.resolvedTheme=resolved;
 }
 function applyTheme(mode,{persist=false}={}){
   const safeMode=["system","dark","light"].includes(mode)?mode:"system";
@@ -40,8 +49,9 @@ function applyTheme(mode,{persist=false}={}){
     try{localStorage.setItem(THEME_KEY,safeMode)}catch{}
   }
   const meta=$("#themeColorMeta")||document.querySelector('meta[name="theme-color"]');
-  if(meta)meta.setAttribute("content",resolved==="light"?"#eef5fc":"#071018");
+  if(meta)meta.setAttribute("content",resolved==="light"?"#f3f8fc":"#071018");
   syncThemeControls(safeMode);
+  syncQuickThemeButton(resolved);
 }
 function initTheme(){
   applyTheme(readThemeMode());
@@ -293,9 +303,13 @@ async function importData(file){
   alert("Импорт завершён");
 }
 function bind(){
-  $$("[data-theme-choice]").forEach(btn=>{
+  $("[data-theme-choice]").forEach(btn=>{
     btn.onclick=()=>applyTheme(btn.dataset.themeChoice,{persist:true});
   });
+  $("#themeQuickBtn").onclick=()=>{
+    const next=document.documentElement.dataset.theme==="light"?"dark":"light";
+    applyTheme(next,{persist:true});
+  };
   $("#backBtn").onclick=()=>{renderDeck();setView("home");};
   $("#recordPrev").onclick=()=>moveRecord(-1);
   $("#recordNext").onclick=()=>moveRecord(1);
