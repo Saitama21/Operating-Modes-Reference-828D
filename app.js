@@ -306,10 +306,10 @@ function bind(){
   $$("[data-theme-choice]").forEach(btn=>{
     btn.onclick=()=>applyTheme(btn.dataset.themeChoice,{persist:true});
   });
-  $("#themeQuickBtn").onclick=()=>{
+  $("#themeQuickBtn")?.addEventListener("click",()=>{
     const next=document.documentElement.dataset.theme==="light"?"dark":"light";
     applyTheme(next,{persist:true});
-  };
+  });
   $("#backBtn").onclick=()=>{renderDeck();setView("home");};
   $("#recordPrev").onclick=()=>moveRecord(-1);
   $("#recordNext").onclick=()=>moveRecord(1);
@@ -345,6 +345,36 @@ function bind(){
     if(state.view==="detail"&&e.key==="ArrowRight")moveRecord(1);
   });
 }
+let persistenceRequested=false;
+async function requestPersistentStorage(){
+  if(persistenceRequested)return;
+  persistenceRequested=true;
+  try{
+    if(navigator.storage&&navigator.storage.persist){
+      await navigator.storage.persist();
+    }
+  }catch{}
+}
+
+async function setupOfflineRuntime(){
+  requestPersistentStorage();
+  if(!("serviceWorker" in navigator))return;
+
+  try{
+    const registration=await navigator.serviceWorker.register("./sw.js",{
+      scope:"./",
+      updateViaCache:"none"
+    });
+
+    const checkForUpdate=()=>{
+      if(navigator.onLine)registration.update().catch(()=>{});
+    };
+
+    checkForUpdate();
+    window.addEventListener("online",checkForUpdate,{passive:true});
+  }catch{}
+}
+
 async function start(){
   initTheme();
   window.scrollTo(0,0);
@@ -353,6 +383,6 @@ async function start(){
   bind();
   renderDeck();
   renderSearch();
-  if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
+  setupOfflineRuntime();
 }
 start();
