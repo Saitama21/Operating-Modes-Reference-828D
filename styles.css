@@ -150,7 +150,12 @@ button{color:inherit;touch-action:manipulation}
 }
 .icon-btn{width:42px;height:42px;border-radius:15px;font-size:18px}
 .icon-btn.small{width:38px;height:38px}
-.top-menu{display:none}
+.top-menu{
+  display:grid;
+  place-items:center;
+  margin-top:34px;
+  flex:0 0 42px;
+}
 .app-shell[data-view="search"] .hero-add{display:none}
 .app-shell[data-view="search"] .top-menu{display:grid;place-items:center}
 .app-shell[data-view="detail"] .topbar{display:none}
@@ -2589,4 +2594,31 @@ html[data-theme] .experience-card{
     border-color .26s ease,
     color .22s ease,
     box-shadow .26s ease;
+}
+
+
+/* HOME MENU VISIBILITY FIX v0.8.1 */
+@media(max-width:699px){
+  .top-actions{
+    min-width:126px;
+    gap:8px;
+  }
+
+  .top-menu{
+    display:grid!important;
+    place-items:center;
+    margin-top:34px;
+    flex:0 0 42px;
+    width:42px;
+    height:42px;
+    border-radius:15px;
+  }
+
+  .hero-add{
+    flex:0 0 50px;
+  }
+
+  .app-shell[data-view="home"] .top-menu{
+    display:grid!important;
+  }
 }
