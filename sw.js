@@ -1,12 +1,12 @@
-const VERSION="1.0.0";
+const VERSION="1.0.1";
 const PRECACHE="828d-modes-precache-"+VERSION;
 const RUNTIME="828d-modes-runtime-"+VERSION;
 
 const SHELL=[
   "./",
   "./index.html",
-  "./styles.css?v=1.0.0",
-  "./app.js?v=1.0.0",
+  "./styles.css?v=1.0.1",
+  "./app.js?v=1.0.1",
   "./manifest.webmanifest"
 ];
 
@@ -74,12 +74,11 @@ self.addEventListener("install",event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(PRECACHE);
 
-    // The shell is atomic: if it cannot be cached, keep the previous
-    // service worker instead of installing a half-working offline build.
-    await Promise.all(SHELL.map(url=>putFresh(cache,url)));
-
-    // Artwork is important but must never block a shell update.
-    await Promise.allSettled(STATIC_ASSETS.map(url=>putFresh(cache,url)));
+    // Geometry-calc style full offline install: the UI shell and every
+    // bundled visual asset are cached as one atomic package. If anything
+    // is missing, keep the previous worker instead of installing a partial
+    // offline build with broken cards or artwork.
+    await Promise.all([...SHELL,...STATIC_ASSETS].map(url=>putFresh(cache,url)));
 
     await self.skipWaiting();
   })());

@@ -361,7 +361,7 @@ async function setupOfflineRuntime(){
   if(!("serviceWorker" in navigator))return;
 
   try{
-    const registration=await navigator.serviceWorker.register("./sw.js",{
+    const registration=await navigator.serviceWorker.register("./sw.js?v=1.0.1",{
       scope:"./",
       updateViaCache:"none"
     });
@@ -383,6 +383,12 @@ async function start(){
   bind();
   renderDeck();
   renderSearch();
-  setupOfflineRuntime();
 }
+
+if(document.readyState==="complete"){
+  setupOfflineRuntime();
+}else{
+  window.addEventListener("load",setupOfflineRuntime,{once:true});
+}
+
 start();
