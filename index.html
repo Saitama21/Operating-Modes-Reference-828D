@@ -19,10 +19,35 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="828D Modes">
   <title>Operating Modes Reference 828D</title>
+  <script>
+    (() => {
+      if (!("serviceWorker" in navigator)) return;
+
+      const registerOffline = async () => {
+        try {
+          const registration = await navigator.serviceWorker.register("./sw.js", {
+            scope: "./",
+            updateViaCache: "none"
+          });
+
+          if (navigator.onLine) registration.update().catch(() => {});
+          window.addEventListener("online", () => registration.update().catch(() => {}), { passive: true });
+
+          navigator.serviceWorker.ready.then(() => {
+            document.documentElement.dataset.offlineReady = "true";
+          }).catch(() => {});
+        } catch {
+          document.documentElement.dataset.offlineReady = "false";
+        }
+      };
+
+      registerOffline();
+    })();
+  </script>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./assets/icon.svg">
-  <link rel="stylesheet" href="./styles.css?v=1.0.1">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <div id="app" class="app-shell" data-view="home">
@@ -216,6 +241,6 @@
     </div>
   </dialog>
 
-  <script src="./app.js?v=1.0.1" defer></script>
+  <script src="./app.js" defer></script>
 </body>
 </html>

@@ -356,26 +356,8 @@ async function requestPersistentStorage(){
   }catch{}
 }
 
-async function setupOfflineRuntime(){
-  requestPersistentStorage();
-  if(!("serviceWorker" in navigator))return;
-
-  try{
-    const registration=await navigator.serviceWorker.register("./sw.js?v=1.0.1",{
-      scope:"./",
-      updateViaCache:"none"
-    });
-
-    const checkForUpdate=()=>{
-      if(navigator.onLine)registration.update().catch(()=>{});
-    };
-
-    checkForUpdate();
-    window.addEventListener("online",checkForUpdate,{passive:true});
-  }catch{}
-}
-
 async function start(){
+  requestPersistentStorage();
   initTheme();
   window.scrollTo(0,0);
   fillMaterialSelect();
@@ -383,12 +365,6 @@ async function start(){
   bind();
   renderDeck();
   renderSearch();
-}
-
-if(document.readyState==="complete"){
-  setupOfflineRuntime();
-}else{
-  window.addEventListener("load",setupOfflineRuntime,{once:true});
 }
 
 start();
